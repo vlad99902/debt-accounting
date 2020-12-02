@@ -17,7 +17,7 @@ import '../App';
 
 export const AppTest = observer(() => {
   const [title, setTitle] = useState('');
-  const [sum, setSum] = useState('');
+  const [sum, setSum] = useState(0);
 
   const clearInput = (stateFunc) => {
     stateFunc('');
@@ -28,7 +28,7 @@ export const AppTest = observer(() => {
       {
         id: uid(),
         title: title || 'Title',
-        sum: sum || 0,
+        sum: +sum || 0,
         completed: false,
       },
       type,
@@ -79,6 +79,7 @@ export const AppTest = observer(() => {
           onChange={(event) => setSum(event.target.value)}
         />
       </div>
+      <button onClick={() => console.log(debt.oweTotal)}></button>
     </div>
   );
 });
