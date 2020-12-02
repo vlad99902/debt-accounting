@@ -25,10 +25,6 @@ class Debt {
     } else this.should.push(item);
   }
 
-  // addOwe(owe) {
-  //   this.owe.push(owe);
-  // }
-
   deleteItem(id) {
     this.owe = this.owe.filter((el) => {
       return el.id !== id;
