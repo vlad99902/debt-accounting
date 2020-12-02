@@ -25,6 +25,15 @@ class Debt {
     console.log(this.owe);
     this.owe.push(owe);
   }
-}
 
+  deleteOwe(id) {
+    console.log('KEKW');
+    console.log('KEKW ITS ID:', id);
+    this.owe = this.owe.filter(el => {
+      console.log('EL.ID in DEBT', el.id);
+      return el.id !== id
+    })
+    console.log('this state: ', this.owe);
+  }
+}
 export default new Debt();
