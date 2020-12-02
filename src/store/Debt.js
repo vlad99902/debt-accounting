@@ -1,5 +1,4 @@
-import React from 'react';
-import { makeAutoObservable, observable, computed, action } from 'mobx';
+import { makeAutoObservable } from 'mobx';
 
 class Debt {
   store = [
@@ -38,20 +37,20 @@ class Debt {
 
   get oweTotal() {
     return this.store.reduce((sum, elem) => {
-      if (elem.owe) sum += elem.sum
-      return sum
-    }, 0)
+      if (elem.owe) sum += elem.sum;
+      return sum;
+    }, 0);
   }
 
   get shouldTotal() {
     return this.store.reduce((sum, elem) => {
-      if (!elem.owe) sum += elem.sum
-      return sum
-    }, 0)
+      if (!elem.owe) sum += elem.sum;
+      return sum;
+    }, 0);
   }
 
   get allTotal() {
-    return Math.abs(this.shouldTotal - this.oweTotal)
+    return Math.abs(this.shouldTotal - this.oweTotal);
   }
 }
 export default new Debt();

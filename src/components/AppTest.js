@@ -4,7 +4,7 @@ import { uid } from 'uid';
 import { observer } from 'mobx-react-lite';
 
 import { Button } from './Button';
-// import { Input } from './Input';
+import { Total } from './Total';
 import { Card } from './Card';
 
 import debt from '../store/Debt';
@@ -39,14 +39,17 @@ export const AppTest = observer(() => {
 
   return (
     <div className="container">
+      <Total total={debt.allTotal} fw="500" fz="30px" />
       <div className="lists">
         <div className="lists__left">
+          <Total total={debt.oweTotal} />
           <div className="lists__card">
             <Card items={debt.oweList} />
           </div>
         </div>
 
         <div className="lists__right">
+          <Total total={debt.shouldTotal} />
           <div className="lists__card">
             <Card items={debt.shouldList} />
           </div>
@@ -79,7 +82,6 @@ export const AppTest = observer(() => {
           onChange={(event) => setSum(event.target.value)}
         />
       </div>
-      <button onClick={() => console.log(debt.oweTotal)}></button>
     </div>
   );
 });
