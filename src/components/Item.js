@@ -18,7 +18,7 @@ export const Item = observer(
           type="checkbox"
           checked={completed}
           onChange={() => {
-            debt.setCompleted(id);
+            debt.changeCompleted(id);
           }}
           className="item__checkbox"
         />
