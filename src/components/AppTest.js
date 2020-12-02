@@ -23,24 +23,16 @@ export const AppTest = observer(() => {
     stateFunc('');
   };
 
-  const onClickAddOwe = () => {
-    debt.addOwe({
-      id: uid(),
-      title: title || 'Title',
-      sum: sum || 0,
-      completed: false,
-    });
-    clearInput(setTitle);
-    clearInput(setSum);
-  };
-
-  const onClickAddShould = () => {
-    debt.addShould({
-      id: uid(),
-      title: title || 'Title',
-      sum: sum || 0,
-      completed: false,
-    });
+  const onClickAdd = (type = 'owe') => {
+    debt.add(
+      {
+        id: uid(),
+        title: title || 'Title',
+        sum: sum || 0,
+        completed: false,
+      },
+      type,
+    );
     clearInput(setTitle);
     clearInput(setSum);
   };
@@ -63,11 +55,11 @@ export const AppTest = observer(() => {
 
       <div className="lists__buttons">
         <div className="lists__button">
-          <Button text="Add" onClick={onClickAddOwe} />
+          <Button text="Add" onClick={() => onClickAdd('owe')} />
         </div>
 
         <div className="lists__button">
-          <Button text="Add" onClick={onClickAddShould} />
+          <Button text="Add" onClick={() => onClickAdd('should')} />
         </div>
       </div>
 

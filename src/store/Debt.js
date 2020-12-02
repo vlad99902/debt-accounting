@@ -19,13 +19,15 @@ class Debt {
     makeAutoObservable(this);
   }
 
-  addShould(should) {
-    this.should.push(should);
+  add(item, type) {
+    if (type === 'owe') {
+      this.owe.push(item);
+    } else this.should.push(item);
   }
 
-  addOwe(owe) {
-    this.owe.push(owe);
-  }
+  // addOwe(owe) {
+  //   this.owe.push(owe);
+  // }
 
   deleteItem(id) {
     this.owe = this.owe.filter((el) => {
