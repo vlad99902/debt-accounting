@@ -1,37 +1,25 @@
-import React from 'react'
+import React from 'react';
 
 // Styles
-import "../styles/Button.sass"
+import '../styles/Button.sass';
 
 //components
-import Debt from '../store/Debt'
+// import Debt from '../store/Debt';
+// import { act } from 'react-dom/test-utils';
 
-export const Button = ({ text = "default", type = 'should' }) => {
-
-  const newDebt = () => {
-    type === 'owe'
-      ? Debt.addOwe({
-        id: 1,
-        title: Debt.inputTitle,
-        sum: Debt.inputSum,
-        completed: false
-      })
-      : Debt.addShould({
-        id: 1,
-        title: Debt.inputTitle,
-        sum: Debt.inputSum,
-        completed: false
-      })
-  }
+export const Button = ({
+  text = 'default',
+  type = 'should',
+  onClick = () => {},
+}) => {
+  const preventAction = (event) => {
+    event.preventDefault();
+    console.log('action: ', onClick);
+    onClick();
+  };
   return (
-    <>
-      <div
-        className="button"
-        onClick={() => {
-          newDebt()
-        }}
-      >
-        {text}</div>
-    </>
-  )
-}
+    <button className="button" onClick={preventAction}>
+      {text}
+    </button>
+  );
+};
