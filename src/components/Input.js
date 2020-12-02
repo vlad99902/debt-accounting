@@ -3,9 +3,13 @@ import React, { useState } from 'react'
 //styles
 import "../styles/Input.sass"
 
-export const Input = ({ type = 'num' }) => {
+//components
+import DebtStore from '../store/DebtStore'
+import { observer } from 'mobx-react-lite'
 
-  const [value, setValue] = useState('')
+export const Input = observer(({ type = 'num' }) => {
+
+  //const [value, setValue] = useState('')
 
   let ph = ['Debt']
 
@@ -18,10 +22,10 @@ export const Input = ({ type = 'num' }) => {
         type='text'
         className='input'
         placeholder={ph}
-        value={value}
-        onChange={event => setValue(event.target.value)}
+        value={DebtStore.inputValue}
+        onChange={event => DebtStore.setInputValue(event.target.value)}
         size="10"
       />
     </>
   )
-}
+})
