@@ -19,22 +19,23 @@ class Debt {
     makeAutoObservable(this);
   }
 
-  addShould(should) {
-    this.should.push(should);
+  add(item, type) {
+    if (type === 'owe') {
+      this.owe.push(item);
+    } else this.should.push(item);
   }
 
-  addOwe(owe) {
-    this.owe.push(owe);
-  }
+  // addOwe(owe) {
+  //   this.owe.push(owe);
+  // }
 
-  deleteOwe(id) {
-    console.log('KEKW');
-    console.log('KEKW ITS ID:', id);
-    this.owe = this.owe.filter(el => {
-      console.log('EL.ID in DEBT', el.id);
-      return el.id !== id
-    })
-    console.log('this state: ', this.owe);
+  deleteItem(id) {
+    this.owe = this.owe.filter((el) => {
+      return el.id !== id;
+    });
+    this.should = this.should.filter((el) => {
+      return el.id !== id;
+    });
   }
 }
 export default new Debt();

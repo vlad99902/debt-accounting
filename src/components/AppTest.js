@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import { uid } from 'uid';
+import { observer } from 'mobx-react-lite';
 
 import { Button } from './Button';
 // import { Input } from './Input';
@@ -14,36 +15,26 @@ import '../App';
 
 //components
 
-export const AppTest = () => {
-  const [oweTitle, setOweTitle] = useState('');
-  const [oweSum, setOweSum] = useState();
-  const [shouldTitle, setShouldTitle] = useState('');
-  const [shouldSum, setShouldSum] = useState();
+export const AppTest = observer(() => {
+  const [title, setTitle] = useState('');
+  const [sum, setSum] = useState('');
 
   const clearInput = (stateFunc) => {
     stateFunc('');
   };
 
-  const onClickAddOwe = () => {
-    debt.addOwe({
-      id: uid(),
-      title: oweTitle || 'Title',
-      sum: oweSum || 0,
-      completed: false,
-    });
-    clearInput(setOweTitle);
-    clearInput(setOweSum);
-  };
-
-  const onClickAddShould = () => {
-    debt.addShould({
-      id: uid(),
-      title: shouldTitle || 'Title',
-      sum: shouldSum || 0,
-      completed: false,
-    });
-    clearInput(setShouldTitle);
-    clearInput(setShouldSum);
+  const onClickAdd = (type = 'owe') => {
+    debt.add(
+      {
+        id: uid(),
+        title: title || 'Title',
+        sum: sum || 0,
+        completed: false,
+      },
+      type,
+    );
+    clearInput(setTitle);
+    clearInput(setSum);
   };
 
   return (
@@ -53,34 +44,41 @@ export const AppTest = () => {
           <div className="lists__card">
             <Card items={debt.owe} />
           </div>
-          <div className="lists__button">
-            <Button text="Add" onClick={onClickAddOwe} />
-          </div>
         </div>
 
         <div className="lists__right">
           <div className="lists__card">
             <Card items={debt.should} />
           </div>
-          <div className="lists__button">
-            <Button text="Add" onClick={onClickAddShould} />
-          </div>
         </div>
       </div>
-      <input
-        type="text"
-        className="input"
-        placeholder="Title"
-        value={oweTitle}
-        onChange={(event) => setOweTitle(event.target.value)}
-      />
-      <input
-        type="text"
-        className="input"
-        placeholder="Sum"
-        value={oweSum}
-        onChange={(event) => setOweSum(event.target.value)}
-      />
+
+      <div className="lists__buttons">
+        <div className="lists__button">
+          <Button text="Add" onClick={() => onClickAdd('owe')} />
+        </div>
+
+        <div className="lists__button">
+          <Button text="Add" onClick={() => onClickAdd('should')} />
+        </div>
+      </div>
+
+      <div className="lists__inputs">
+        <input
+          type="text"
+          className="input lists__input"
+          placeholder="Title"
+          value={title}
+          onChange={(event) => setTitle(event.target.value)}
+        />
+        <input
+          type="text"
+          className="input lists__input"
+          placeholder="Sum"
+          value={sum}
+          onChange={(event) => setSum(event.target.value)}
+        />
+      </div>
     </div>
   );
-};
+});
