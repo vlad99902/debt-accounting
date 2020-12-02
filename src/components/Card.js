@@ -1,10 +1,11 @@
 import React from 'react';
+import { observer } from 'mobx-react-lite';
 
 import '../styles/Card.sass';
 
 import { Item } from '../components/Item';
 
-export const Card = ({ items = [] }) => {
+export const Card = observer(({ items = [] }) => {
   return (
     <div className="card">
       {items.map((item) => {
@@ -16,4 +17,4 @@ export const Card = ({ items = [] }) => {
       })}
     </div>
   );
-};
+});

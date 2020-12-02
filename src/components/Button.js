@@ -4,8 +4,6 @@ import React from 'react';
 import '../styles/Button.sass';
 
 //components
-// import Debt from '../store/Debt';
-// import { act } from 'react-dom/test-utils';
 
 export const Button = ({
   text = 'default',
@@ -14,7 +12,6 @@ export const Button = ({
 }) => {
   const preventAction = (event) => {
     event.preventDefault();
-    console.log('action: ', onClick);
     onClick();
   };
   return (

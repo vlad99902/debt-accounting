@@ -21,8 +21,6 @@ class Debt {
   }
 
   addOwe(owe) {
-    console.log(owe);
-    console.log(this.owe);
     this.owe.push(owe);
   }
 }

@@ -1,38 +1,58 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { uid } from 'uid';
-import { observer } from 'mobx-react-lite';
 
 import { Button } from './Button';
-import { Input } from './Input';
+// import { Input } from './Input';
 import { Card } from './Card';
 
-import Debt from '../store/Debt';
+import debt from '../store/Debt';
+
+//styles
+import '../styles/Input.sass';
 
 //components
 
-export const AppTest = observer(() => {
+export const AppTest = () => {
+  const [oweTitle, setOweTitle] = useState('');
+  const [oweSum, setOweSum] = useState();
+
+  const clearInput = (stateFunc) => {
+    stateFunc('');
+  };
+
+  const onClick = () => {
+    debt.addOwe({
+      id: uid(),
+      title: oweTitle || 'Title',
+      sum: oweSum || 0,
+      completed: false,
+    });
+    clearInput(setOweTitle);
+  };
+
   return (
     <div className="container">
       <div className="main-block">
         <div className="left-block"></div>
         <div className="right-block"></div>
-        <Button
-          text="FUCK"
-          onClick={() =>
-            Debt.addOwe({
-              id: uid(),
-              title: 'Test',
-              sum: 1000,
-              completed: false,
-            })
-          }
+        <Card items={debt.owe} />
+        <input
+          type="text"
+          className="input"
+          placeholder="Title"
+          value={oweTitle}
+          onChange={(event) => setOweTitle(event.target.value)}
         />
-        <Input type="num" />
-        <div className="container">
-          <Card items={Debt.owe} />
-        </div>
+        <input
+          type="text"
+          className="input"
+          placeholder="Sum"
+          value={oweSum}
+          onChange={(event) => setOweSum(event.target.value)}
+        />
+        <Button text="FUCK" onClick={onClick} />
       </div>
     </div>
   );
-});
+};
