@@ -42,13 +42,13 @@ export const AppTest = observer(() => {
       <div className="lists">
         <div className="lists__left">
           <div className="lists__card">
-            <Card items={debt.owe} />
+            <Card items={debt.oweList} />
           </div>
         </div>
 
         <div className="lists__right">
           <div className="lists__card">
-            <Card items={debt.should} />
+            <Card items={debt.shouldList} />
           </div>
         </div>
       </div>
