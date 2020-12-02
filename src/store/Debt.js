@@ -2,7 +2,10 @@ import React from 'react';
 import { makeAutoObservable, observable, computed, action } from 'mobx';
 
 class Debt {
-  should = [{ id: 'dasfknads', title: '', sum: 0, completed: false }];
+  should = [
+    { id: 'dasfknads', title: 'Пизда', sum: 0, completed: false },
+    { id: '214234', title: 'Пизда', sum: 0, completed: false },
+  ];
   owe = [
     { id: 'waknf', title: 'Testing', sum: 0, completed: false },
     { id: '124512', title: 'Пизда', sum: 1000, completed: true },
