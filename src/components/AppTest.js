@@ -72,8 +72,8 @@ export const AppTest = observer(() => {
           onChange={(event) => setTitle(event.target.value)}
         />
         <input
-          type="text"
           className="input lists__input"
+          type="number"
           placeholder="Sum"
           value={sum}
           onChange={(event) => setSum(event.target.value)}
