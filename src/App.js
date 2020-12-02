@@ -13,7 +13,30 @@ function App() {
           <div className="right-block"></div>
           <Button text="FUCK" />
           <Input type="num" />
-          <Card />
+          <div className="container">
+            <Card
+              items={[
+                {
+                  id: 'wed342',
+                  title: 'Suck dickылзывта',
+                  sum: 10000,
+                  completed: true,
+                },
+                {
+                  id: 'wed342ewqf',
+                  title: 'Suck dick',
+                  sum: 1000,
+                  completed: false,
+                },
+                {
+                  id: 'wed34wqf2',
+                  title: 'Suck dick',
+                  sum: 1000,
+                  completed: false,
+                },
+              ]}
+            />
+          </div>
         </div>
       </div>
     </div>

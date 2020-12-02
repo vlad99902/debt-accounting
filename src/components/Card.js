@@ -9,13 +9,9 @@ export const Card = ({ items = [] }) => {
     <div className="card">
       {items.map((item) => {
         return (
-          <Item
-            key={item.id}
-            // title={item.title}
-            // completed={item.completed}
-            // sum={item.sum}
-            {...item}
-          />
+          <div className="card__item">
+            <Item key={item.id} {...item} />
+          </div>
         );
       })}
     </div>
