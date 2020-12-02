@@ -22,9 +22,18 @@ class Debt {
   }
 
   deleteItem(id) {
-    this.store = this.store.filter((el) => {
-      return el.id !== id;
-    });
+    this.setStore(
+      this.store.filter((el) => {
+        return el.id !== id;
+      }),
+    );
+  }
+
+  setCompleted(id) {
+    let store = this.store;
+    const index = this.store.findIndex((el) => el.id === id);
+    store[index].completed = !store[index].completed;
+    this.setStore(store);
   }
 
   get oweList() {
@@ -37,20 +46,24 @@ class Debt {
 
   get oweTotal() {
     return this.store.reduce((sum, elem) => {
-      if (elem.owe) sum += elem.sum;
+      if (elem.owe && !elem.completed) sum += elem.sum;
       return sum;
     }, 0);
   }
 
   get shouldTotal() {
     return this.store.reduce((sum, elem) => {
-      if (!elem.owe) sum += elem.sum;
+      if (!elem.owe && !elem.completed) sum += elem.sum;
       return sum;
     }, 0);
   }
 
   get allTotal() {
     return Math.abs(this.shouldTotal - this.oweTotal);
+  }
+
+  setStore(store) {
+    this.store = store;
   }
 }
 export default new Debt();
