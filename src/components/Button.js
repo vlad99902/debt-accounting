@@ -4,19 +4,31 @@ import React from 'react'
 import "../styles/Button.sass"
 
 //components
-import DebtStore from '../store/DebtStore'
+import Debt from '../store/Debt'
 
-export const Button = ({ text = "default" }) => {
+export const Button = ({ text = "default", type = 'should' }) => {
 
-
-
+  const newDebt = () => {
+    type === 'owe'
+      ? Debt.addOwe({
+        id: 1,
+        title: Debt.inputTitle,
+        sum: Debt.inputSum,
+        completed: false
+      })
+      : Debt.addShould({
+        id: 1,
+        title: Debt.inputTitle,
+        sum: Debt.inputSum,
+        completed: false
+      })
+  }
   return (
     <>
       <div
         className="button"
         onClick={() => {
-          DebtStore.store.value = DebtStore.inputValue
-          //console.log(DebtStore.store.value);
+          newDebt()
         }}
       >
         {text}</div>

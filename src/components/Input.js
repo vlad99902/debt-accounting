@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import "../styles/Input.sass"
 
 //components
-import DebtStore from '../store/DebtStore'
+import Debt from '../store/Debt'
 import { observer } from 'mobx-react-lite'
 
 export const Input = observer(({ type = 'num' }) => {
@@ -22,8 +22,8 @@ export const Input = observer(({ type = 'num' }) => {
         type='text'
         className='input'
         placeholder={ph}
-        value={DebtStore.inputValue}
-        onChange={event => DebtStore.setInputValue(event.target.value)}
+        value={Debt.inputValue}
+        onChange={event => Debt.setInputValue(event.target.value)}
         size="10"
       />
     </>
