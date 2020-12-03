@@ -6,17 +6,20 @@ import '../styles/Button.sass';
 //components
 
 export const Button = ({
-  text = 'default',
+  children = 'default',
   type = 'should',
+  mr = '12px',
   onClick = () => {},
 }) => {
+  const style = { marginRight: mr };
   const preventAction = (event) => {
     event.preventDefault();
     onClick();
   };
+
   return (
-    <button className="button" onClick={preventAction}>
-      {text}
+    <button className="button" style={style} onClick={preventAction}>
+      {children}
     </button>
   );
 };
