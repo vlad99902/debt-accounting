@@ -10,6 +10,7 @@ export const Button = ({
   type = 'should',
   mr = '12px',
   onClick = () => {},
+  disabled,
 }) => {
   const style = { marginRight: mr };
   const preventAction = (event) => {
@@ -18,7 +19,12 @@ export const Button = ({
   };
 
   return (
-    <button className="button" style={style} onClick={preventAction}>
+    <button
+      className="button"
+      style={style}
+      disabled={disabled}
+      onClick={preventAction}
+    >
       {children}
     </button>
   );
