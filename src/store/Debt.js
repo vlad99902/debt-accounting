@@ -15,14 +15,26 @@ class Debt {
     makeAutoObservable(this);
   }
 
-  add(item, type) {
+  add(item) {
     let store = this.store;
-    if (type === 'owe') {
-      store.push({ ...item, owe: true });
-    } else {
-      store.push(item);
-    }
+    store.push(item);
     this.setStore(store);
+    // try {
+    //   const data = yield request(
+    //     '/api/debt/add',
+    //     'POST',
+    //     {
+    //       item,
+    //     },
+    //     { Authorization: `Bearer ${auth.token}` },
+    //   );
+
+    //   console.log(data);
+
+    //   // history.push(`/detail/${data.link._id}`);
+    // } catch (e) {
+    //   console.log('mistake here', e);
+    // }
   }
 
   deleteItem(id) {

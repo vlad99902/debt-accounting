@@ -49,17 +49,16 @@ export const MainPage = observer(() => {
     stateFunc('');
   };
 
-  const onClickAdd = async (type = 'owe') => {
+  const onClickAdd = async (owe = true) => {
     //TODO изменить добавление (добавлять тип в локальный стор правильно)
-    debt.add(
-      {
-        id: uid(),
-        title: title || 'Title',
-        sum: +sum || 0,
-        completed: false,
-      },
-      type,
-    );
+
+    debt.add({
+      id: uid(),
+      title: title || 'Title',
+      sum: +sum || 0,
+      completed: false,
+      owe,
+    });
     clearInput(setTitle);
     clearInput(setSum);
 
@@ -106,11 +105,11 @@ export const MainPage = observer(() => {
 
       <div className="lists__buttons">
         <div className="lists__button">
-          <Button text="Add" onClick={() => onClickAdd('owe')} />
+          <Button text="Add" onClick={() => onClickAdd(true)} />
         </div>
 
         <div className="lists__button">
-          <Button text="Add" onClick={() => onClickAdd('should')} />
+          <Button text="Add" onClick={() => onClickAdd(false)} />
         </div>
       </div>
 
