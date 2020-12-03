@@ -1,20 +1,12 @@
 import './App.sass';
-// import { uid } from 'uid';
 
-// import { Button } from './components/Button.js';
-// import { Input } from './components/Input.js';
-// import { Card } from './components/Card';
-
-// import Debt from './store/Debt';
-
-import { AppTest } from './components/AppTest';
+//для использования роутов
+import { BrowserRouter } from 'react-router-dom';
+import { useRoutes } from './routes';
 
 function App() {
-  return (
-    <div className="App">
-      <AppTest />
-    </div>
-  );
+  const routes = useRoutes(true);
+  return <BrowserRouter>{routes}</BrowserRouter>;
 }
 
 export default App;

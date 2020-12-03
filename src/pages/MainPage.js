@@ -3,9 +3,9 @@ import React, { useState } from 'react';
 import { uid } from 'uid';
 import { observer } from 'mobx-react-lite';
 
-import { Button } from './Button';
-import { Total } from './Total';
-import { Card } from './Card';
+import { Button } from '../components/Button';
+import { Total } from '../components/Total';
+import { Card } from '../components/Card';
 
 import debt from '../store/Debt';
 
@@ -15,7 +15,7 @@ import '../App';
 
 //components
 
-export const AppTest = observer(() => {
+export const MainPage = observer(() => {
   const [title, setTitle] = useState('');
   const [sum, setSum] = useState(0);
 
