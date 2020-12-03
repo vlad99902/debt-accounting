@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 
 import '../styles/Input.sass';
 import '../styles/AuthPage.sass';
@@ -7,8 +7,10 @@ import { Header } from '../components/Header';
 import { EmptyCard } from '../components/EmptyCard';
 import { Button } from '../components/Button';
 import { useHttp } from '../hooks/http.hook';
+import { AuthContext } from '../context/AuthContext';
 
 export const AuthPage = () => {
+  const auth = useContext(AuthContext);
   const { loading, error, request } = useHttp();
   const [form, setForm] = useState({ email: '', password: '' });
 
@@ -22,9 +24,17 @@ export const AuthPage = () => {
   const registerHandler = async () => {
     try {
       const data = await request('/api/auth/register', 'POST', { ...form });
-      console.log(data);
+      //TODO вывести сообщение
     } catch (e) {}
   };
+
+  const loginHandler = async () => {
+    try {
+      const data = await request('/api/auth/login', 'POST', { ...form });
+      auth.login(data.token, data.userId);
+    } catch (e) {}
+  };
+
   return (
     <div className="container">
       <Header title="Let's start our journey!" fw="500" fz="44px" mb="32px" />
@@ -46,7 +56,9 @@ export const AuthPage = () => {
           placeholder="Password"
           onChange={changeHandler}
         />
-        <Button disabled={loading}>Log In</Button>
+        <Button onClick={loginHandler} disabled={loading}>
+          Log In
+        </Button>
         <Button onClick={registerHandler} disabled={loading}>
           Register
         </Button>
