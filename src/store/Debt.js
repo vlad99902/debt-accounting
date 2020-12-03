@@ -11,8 +11,27 @@ class Debt {
     { id: '214234', title: 'Пизда', sum: 0, completed: false, owe: false },
   ];
 
+  isAuth = false;
+  token = '';
+  loading = false;
+
   constructor() {
     makeAutoObservable(this);
+  }
+
+  init() {
+    this.setLoading(true);
+    try {
+      const data = JSON.parse(localStorage.getItem(storageName));
+      if (data && data.token) {
+        this.setToken(data.token);
+        this.setIsAuth(true);
+        // yield this.fetchInitInfo();
+        // yield this.fetchHighlights();
+      }
+    } catch (error) {
+      console.log('token was not found');
+    }
   }
 
   add(item) {
@@ -89,8 +108,23 @@ class Debt {
     return Math.abs(this.shouldTotal - this.oweTotal);
   }
 
+  /**
+   * Setters
+   */
   setStore(store) {
     this.store = store;
+  }
+
+  setLoading(loading) {
+    this.loading = loading;
+  }
+
+  setToken(token) {
+    this.token = token;
+  }
+
+  setIsAuth(isAuth) {
+    this.isAuth = isAuth;
   }
 }
 export default new Debt();
