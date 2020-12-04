@@ -15,8 +15,8 @@ export const Modal = ({
 
   return ReactDom.createPortal(
     <>
-      <div className="overlay"></div>
-      <div className="wrapper">
+      <div className="overlay" />
+      <div className="modal-wrapper">
         <div className="modal">
           <div className="modal__content">
             {children}
