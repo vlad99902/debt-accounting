@@ -39,9 +39,11 @@ export const AuthPage = observer(() => {
 
   return (
     <div className="container">
-      <Header title="Let's start our journey!" fw="500" fz="44px" mb="32px" />
+      <Header fw="500" fz="44px" mb="16px">
+        Let's start our journey!
+      </Header>
       <EmptyCard position="center">
-        <Header>Register or Log In</Header>
+        <Header mb="16px">Register or Log In</Header>
         <input
           type="email"
           id="email"
@@ -58,7 +60,7 @@ export const AuthPage = observer(() => {
           placeholder="Password"
           onChange={changeHandler}
         />
-        <Button onClick={loginHandler} disabled={debt.loading}>
+        <Button mr="12px" onClick={loginHandler} disabled={debt.loading}>
           Log In
         </Button>
         <Button onClick={registerHandler} disabled={debt.loading}>
