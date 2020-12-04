@@ -140,7 +140,6 @@ class Debt {
 
       let store = this.store;
       store = store.filter((el) => {
-        console.log(el._id);
         return el._id !== id;
       });
       this.setStore(store);

@@ -17,8 +17,6 @@ export default async function request(url, method = 'GET', token, data = null) {
       body,
     });
 
-    console.log(response);
-
     if (!response.ok) {
       throw new Error(data.message || 'Something wrong in fetch');
     }
