@@ -46,8 +46,7 @@ export const MainPage = observer(() => {
   const onClickAdd = async (owe = true) => {
     //TODO изменить добавление (добавлять тип в локальный стор правильно)
 
-    debt.add({
-      id: uid(),
+    await debt.add({
       title: title || 'Title',
       sum: +sum || 0,
       completed: false,
@@ -55,27 +54,6 @@ export const MainPage = observer(() => {
     });
     clearInput(setTitle);
     clearInput(setSum);
-
-    //POST TEST
-    // try {
-    //   const data = await request(
-    //     '/api/debt/add',
-    //     'POST',
-    //     {
-    //       title: title || 'Title',
-    //       sum: +sum || 0,
-    //       completed: false,
-    //       owe: true,
-    //     },
-    //     { Authorization: `Bearer ${auth.token}` },
-    //   );
-
-    //   console.log(data);
-
-    //   // history.push(`/detail/${data.link._id}`);
-    // } catch (e) {
-    //   console.log('mistake here', e);
-    // }
   };
 
   return (

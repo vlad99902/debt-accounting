@@ -1,5 +1,8 @@
 import { makeAutoObservable } from 'mobx';
 import request from '../functions/request';
+
+const { ObjectID } = require('mongodb');
+
 class Debt {
   store = [];
 
@@ -92,6 +95,10 @@ class Debt {
     }
   }
 
+  /**
+   * Get debts from db by user
+   */
+
   *getAllDebts() {
     this.setLoading(true);
     try {
@@ -104,26 +111,25 @@ class Debt {
     }
   }
 
-  add(item) {
-    let store = this.store;
-    store.push(item);
-    this.setStore(store);
-    // try {
-    //   const data = yield request(
-    //     '/api/debt/add',
-    //     'POST',
-    //     {
-    //       item,
-    //     },
-    //     { Authorization: `Bearer ${auth.token}` },
-    //   );
+  /**
+   * Adding new item to localstore and send on server
+   * @param {*} item
+   */
+  *add(item) {
+    try {
+      const debtId = new ObjectID().toString();
 
-    //   console.log(data);
+      const dataToSend = { _id: new ObjectID(debtId), ...item };
+      yield request('/api/debt/add', 'POST', this.token, {
+        dataToSend,
+      });
 
-    //   // history.push(`/detail/${data.link._id}`);
-    // } catch (e) {
-    //   console.log('mistake here', e);
-    // }
+      let store = this.store;
+      store.push({ _id: debtId, ...item });
+      this.setStore(store);
+    } catch (e) {
+      console.log('mistake here', e);
+    }
   }
 
   deleteItem(id) {
