@@ -1,4 +1,5 @@
 import React from 'react';
+import { observer } from 'mobx-react-lite'
 
 import '../styles/PageHeader.sass';
 
@@ -8,7 +9,15 @@ import debt from '../store/Debt';
 import { NavLink } from 'react-router-dom';
 import { Header } from './Header';
 
-export const PageHeader = ({ mb = '0px', userName = 'kekw' }) => {
+
+export const PageHeader = observer(({ mb = '0px', }) => {
+
+  //const userName = debt.email
+
+  // debt.setPathName(window.location.pathname)
+
+  // console.log('In header pn = ', debt.pathName);
+
   return (
     <div className="wrapper" style={{ marginBottom: mb }}>
       <div className="container">
@@ -20,12 +29,14 @@ export const PageHeader = ({ mb = '0px', userName = 'kekw' }) => {
           </div>
           <div className="page-header__navigation">
             <div className="page-header__nav-el page-header__balance">
-              <Total total={debt.allTotal} fz="18px" fw="600">
-                Balance:{' '}
-              </Total>
+              <NavLink to="/home" activeClassName='active'>
+
+                Balance: {debt.allTotal}
+
+              </NavLink>
             </div>
             <div className="page-header__nav-el page-header__user">
-              {userName}
+              <NavLink to="/settings" activeClassName='active'>userName@gmail.com</NavLink>
             </div>
             <div className="page-header__nav-el page-header__logout">
               <a href="/home" onClick={() => debt.logout()}>
@@ -37,10 +48,8 @@ export const PageHeader = ({ mb = '0px', userName = 'kekw' }) => {
       </div>
     </div>
   );
-};
+})
 
-//
-// {/* <div className="page-header__nav-el page-header__settings">
-//               <NavLink to="/settings">settings</NavLink>
-//             </div>
-//              */}
+
+
+

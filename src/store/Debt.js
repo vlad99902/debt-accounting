@@ -12,6 +12,7 @@ class Debt {
   userId = '';
   loading = false;
   storageName = 'userData';
+  pathName = window.location.pathname
 
   constructor() {
     makeAutoObservable(this);
@@ -218,6 +219,9 @@ class Debt {
   }
   setUserId(userId) {
     this.userId = userId;
+  }
+  setPathName(pathname) {
+    this.pathName = pathname
   }
 }
 export default new Debt();

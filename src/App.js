@@ -16,6 +16,8 @@ export default observer(function App() {
   }, []);
   const routes = useRoutes(debt.isAuth);
 
+  console.log(window.location.href);
+
   return (
     <BrowserRouter>
       {debt.isAuth && <PageHeader mb="32px" />}

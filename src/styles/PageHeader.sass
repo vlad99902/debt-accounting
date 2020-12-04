@@ -8,6 +8,8 @@
 .wrapper
   width: 100%
   background-color: $karamel
+  position: sticky
+  top: 0px
 
 .page-header
   display: flex
@@ -32,8 +34,19 @@
   &__logout
 
   &__nav-el
-    font-weight: 600
+    font-weight: 500
     font-size: 18px
     margin-right: 30px
     &:last-child
       margin-right: 0px
+
+.active
+  color: $perec
+  position: relative
+  //font-weight: 700
+  &::before
+    position: absolute
+    content: ""
+    width: 70%
+    bottom: -4px
+    border-bottom: 2px solid $perec
