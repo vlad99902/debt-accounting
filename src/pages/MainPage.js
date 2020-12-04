@@ -1,4 +1,4 @@
-import React, { useState, useContext, useCallback, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import { uid } from 'uid';
 import { observer } from 'mobx-react-lite';
@@ -6,9 +6,6 @@ import { observer } from 'mobx-react-lite';
 import { Button } from '../components/Button';
 import { Total } from '../components/Total';
 import { Card } from '../components/Card';
-
-import { useHttp } from '../hooks/http.hook';
-import { AuthContext } from '../context/AuthContext';
 
 import debt from '../store/Debt';
 
@@ -23,9 +20,6 @@ export const MainPage = observer(() => {
   const [sum, setSum] = useState(0);
 
   //test get from server
-  const [debts, setDebts] = useState([]);
-  const { loading, request } = useHttp();
-  const auth = useContext(AuthContext);
 
   //get
   // const fetchDebts = useCallback(async () => {
@@ -52,8 +46,7 @@ export const MainPage = observer(() => {
   const onClickAdd = async (owe = true) => {
     //TODO изменить добавление (добавлять тип в локальный стор правильно)
 
-    debt.add({
-      id: uid(),
+    await debt.add({
       title: title || 'Title',
       sum: +sum || 0,
       completed: false,
@@ -61,27 +54,6 @@ export const MainPage = observer(() => {
     });
     clearInput(setTitle);
     clearInput(setSum);
-
-    //POST TEST
-    // try {
-    //   const data = await request(
-    //     '/api/debt/add',
-    //     'POST',
-    //     {
-    //       title: title || 'Title',
-    //       sum: +sum || 0,
-    //       completed: false,
-    //       owe: true,
-    //     },
-    //     { Authorization: `Bearer ${auth.token}` },
-    //   );
-
-    //   console.log(data);
-
-    //   // history.push(`/detail/${data.link._id}`);
-    // } catch (e) {
-    //   console.log('mistake here', e);
-    // }
   };
 
   return (

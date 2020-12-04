@@ -1,4 +1,6 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import { observer } from 'mobx-react-lite';
+import debt from '../store/Debt';
 
 import '../styles/Input.sass';
 import '../styles/AuthPage.sass';
@@ -6,20 +8,14 @@ import '../styles/AuthPage.sass';
 import { Header } from '../components/Header';
 import { EmptyCard } from '../components/EmptyCard';
 import { Button } from '../components/Button';
-import { useHttp } from '../hooks/http.hook';
-import { AuthContext } from '../context/AuthContext';
-import { Modal } from '../components/Modal';
 
-export const AuthPage = () => {
 
-  const [isOpen, setIsOpen] = useState(false)
-
-  const auth = useContext(AuthContext);
-  const { loading, error, request } = useHttp();
+export const AuthPage = observer(() => {
   const [form, setForm] = useState({ email: '', password: '' });
 
   //обработка ошибок, которые прилетели с сервера
-  useEffect(() => { }, [error]);
+  // useEffect(() => {}, [error]);
+
 
   const changeHandler = (event) => {
     setForm({ ...form, [event.target.name]: event.target.value });
@@ -27,16 +23,22 @@ export const AuthPage = () => {
 
   const registerHandler = async () => {
     try {
-      const data = await request('/api/auth/register', 'POST', { ...form });
-      //TODO вывести сообщение
-    } catch (e) { }
+
+      await debt.register({ ...form });
+    } catch (e) {
+      console.log(e);
+    }
+
   };
 
   const loginHandler = async () => {
     try {
-      const data = await request('/api/auth/login', 'POST', { ...form });
-      auth.login(data.token, data.userId);
-    } catch (e) { }
+
+      await debt.login({ ...form });
+    } catch (e) {
+      console.log(e);
+    }
+
   };
 
   return (
@@ -60,10 +62,10 @@ export const AuthPage = () => {
           placeholder="Password"
           onChange={changeHandler}
         />
-        <Button onClick={loginHandler} disabled={loading}>
+        <Button onClick={loginHandler} disabled={debt.loading}>
           Log In
         </Button>
-        <Button onClick={registerHandler} disabled={loading}>
+        <Button onClick={registerHandler} disabled={debt.loading}>
           Register
         </Button>
       </EmptyCard>
@@ -76,4 +78,4 @@ export const AuthPage = () => {
       </Modal>
     </div>
   );
-};
+});

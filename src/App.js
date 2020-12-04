@@ -1,22 +1,21 @@
 import './App.sass';
 
+import { observer } from 'mobx-react-lite';
+import debt from './store/Debt';
+
 //для использования роутов
 import { BrowserRouter } from 'react-router-dom';
 import { useRoutes } from './routes';
-import { useAuth } from './hooks/auth.hook';
-import { AuthContext } from './context/AuthContext';
+import { useEffect } from 'react';
 
-function App() {
-  const { token, login, logout, userId } = useAuth();
-  const isAuth = !!token;
-  const routes = useRoutes(isAuth);
+export default observer(function App() {
+  useEffect(() => {
+    debt.init();
+  }, []);
+  const routes = useRoutes(debt.isAuth);
   return (
-    <AuthContext.Provider value={{ token, login, logout, userId, isAuth }}>
-      <BrowserRouter>
-        <div>{routes}</div>
-      </BrowserRouter>
-    </AuthContext.Provider>
+    <BrowserRouter>
+      <div>{routes}</div>
+    </BrowserRouter>
   );
-}
-
-export default App;
+});

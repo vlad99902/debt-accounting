@@ -1,40 +1,135 @@
 import { makeAutoObservable } from 'mobx';
+import request from '../functions/request';
+
+const { ObjectID } = require('mongodb');
 
 class Debt {
-  store = [
-    { id: 'waknf', title: 'Testing', sum: 0, completed: false, owe: true },
-    { id: '124512', title: 'test2', sum: 1000, completed: true, owe: true },
-    { id: 'sadasd', title: 'Testing', sum: 3000, completed: true, owe: true },
-    { id: '112', title: 'test4', sum: 2000, completed: true, owe: true },
-    { id: 'wakfefwefnf', title: 'first', sum: 0, completed: false, owe: false },
-    { id: 'dasfknads', title: 'Пизда', sum: 0, completed: false, owe: false },
-    { id: '214234', title: 'Пизда', sum: 0, completed: false, owe: false },
-  ];
+  store = [];
+
+  isAuth = false;
+  email = '';
+  token = '';
+  userId = '';
+  loading = false;
+  storageName = 'userData';
 
   constructor() {
     makeAutoObservable(this);
   }
 
-  add(item) {
-    let store = this.store;
-    store.push(item);
-    this.setStore(store);
-    // try {
-    //   const data = yield request(
-    //     '/api/debt/add',
-    //     'POST',
-    //     {
-    //       item,
-    //     },
-    //     { Authorization: `Bearer ${auth.token}` },
-    //   );
+  init() {
+    this.setLoading(true);
+    try {
+      const data = JSON.parse(localStorage.getItem(this.storageName));
+      if (data && data.token) {
+        this.setToken(data.token);
+        this.setIsAuth(true);
+        this.setUserId(data.userId);
+        //TODO fetch start info
+        this.getAllDebts();
+      }
+    } catch (error) {
+      console.log('token was not found');
+    } finally {
+      this.setLoading(false);
+    }
+  }
 
-    //   console.log(data);
+  /**
+   * Lohin user in system if user not authorized
+   * @param {*} email
+   * @param {*} password
+   */
 
-    //   // history.push(`/detail/${data.link._id}`);
-    // } catch (e) {
-    //   console.log('mistake here', e);
-    // }
+  *login({ email, password }) {
+    this.setLoading(true);
+    try {
+      const data = yield request('/api/auth/login', 'POST', '', {
+        email,
+        password,
+      });
+      this.setEmail(email);
+      this.setUserId(data.userId);
+      this.setToken(data.token);
+      localStorage.setItem(
+        this.storageName,
+        JSON.stringify({ userId: this.userId, token: this.token }),
+      );
+      this.setIsAuth(true);
+
+      //TODO Fetch needed info
+      this.getAllDebts();
+    } catch (error) {
+      console.log(error);
+    } finally {
+      this.setLoading(false);
+    }
+  }
+
+  /**
+   * Registration request
+   * @param {*} param0
+   */
+
+  *register({ email, password }) {
+    this.setLoading(true);
+    try {
+      const data = yield request('/api/auth/register', 'POST', '', {
+        email,
+        password,
+      });
+      this.setEmail(email);
+      this.setUserId(data.userId);
+      this.setToken(data.token);
+      localStorage.setItem(
+        this.storageName,
+        JSON.stringify({ userId: this.userId, token: this.token }),
+      );
+      this.setIsAuth(true);
+
+      //TODO Fetch needed info
+    } catch (error) {
+      console.log(error);
+    } finally {
+      this.setLoading(false);
+    }
+  }
+
+  /**
+   * Get debts from db by user
+   */
+
+  *getAllDebts() {
+    this.setLoading(true);
+    try {
+      const debts = yield request('/api/debt', 'GET', this.token);
+      this.setStore(debts);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      this.setLoading(false);
+    }
+  }
+
+  /**
+   * Adding new item to localstore and send on server
+   * @param {*} item
+   */
+  *add(item) {
+    try {
+      const debtId = new ObjectID().toString();
+
+      const dataToSend = { _id: new ObjectID(debtId), ...item };
+      yield request('/api/debt/add', 'POST', this.token, {
+        dataToSend,
+      });
+
+      let store = this.store;
+      store.push({ _id: debtId, ...item });
+      this.setStore(store);
+    } catch (e) {
+      console.log('mistake here', e);
+    }
   }
 
   deleteItem(id) {
@@ -57,11 +152,6 @@ class Debt {
       return a.completed && !b.completed ? 1 : -1;
     });
   }
-  // sortListBySum(array) {
-  //   return array.sort((a, b) => {
-  //     return a.sum < !b.sum ? 1 : -1;
-  //   });
-  // }
 
   get oweList() {
     return this.sortListByCompleted(this.store.filter((el) => el.owe));
@@ -89,8 +179,29 @@ class Debt {
     return Math.abs(this.shouldTotal - this.oweTotal);
   }
 
+  /**
+   * Setters
+   */
   setStore(store) {
     this.store = store;
+  }
+
+  setLoading(loading) {
+    this.loading = loading;
+  }
+
+  setToken(token) {
+    this.token = token;
+  }
+
+  setIsAuth(isAuth) {
+    this.isAuth = isAuth;
+  }
+  setEmail(email) {
+    this.email = email;
+  }
+  setUserId(userId) {
+    this.userId = userId;
   }
 }
 export default new Debt();
