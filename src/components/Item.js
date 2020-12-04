@@ -8,8 +8,8 @@ import debt from '../store/Debt';
 
 export const Item = observer(
   ({ title = 'title', sum = 0, completed = false, _id }) => {
-    const clearItem = () => {
-      debt.deleteItem(_id);
+    const clearItem = async () => {
+      await debt.deleteItem(_id);
     };
 
     return (
