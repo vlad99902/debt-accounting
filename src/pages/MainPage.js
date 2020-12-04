@@ -79,6 +79,8 @@ export const MainPage = observer(() => {
         <div className="lists__inputs">
           <input
             type="text"
+            id="title"
+            name="title"
             className="input lists__input"
             placeholder="Title"
             value={title}
@@ -87,6 +89,8 @@ export const MainPage = observer(() => {
           <input
             className="input lists__input"
             type="number"
+            id="sum"
+            name="sum"
             placeholder="Sum"
             value={sum}
             onChange={(event) => setSum(event.target.value)}
