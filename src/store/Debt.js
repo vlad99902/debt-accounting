@@ -34,6 +34,8 @@ class Debt {
       }
     } catch (error) {
       console.log('token was not found');
+    } finally {
+      this.setLoading(false);
     }
   }
 
@@ -133,11 +135,6 @@ class Debt {
       return a.completed && !b.completed ? 1 : -1;
     });
   }
-  // sortListBySum(array) {
-  //   return array.sort((a, b) => {
-  //     return a.sum < !b.sum ? 1 : -1;
-  //   });
-  // }
 
   get oweList() {
     return this.sortListByCompleted(this.store.filter((el) => el.owe));

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { observer } from 'mobx-react-lite';
 import debt from '../store/Debt';
 
@@ -56,8 +56,12 @@ export const AuthPage = observer(() => {
           placeholder="Password"
           onChange={changeHandler}
         />
-        <Button onClick={loginHandler}>Log In</Button>
-        <Button onClick={registerHandler}>Register</Button>
+        <Button onClick={loginHandler} disabled={debt.loading}>
+          Log In
+        </Button>
+        <Button onClick={registerHandler} disabled={debt.loading}>
+          Register
+        </Button>
       </EmptyCard>
     </div>
   );

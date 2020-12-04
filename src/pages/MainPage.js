@@ -1,4 +1,4 @@
-import React, { useState, useContext, useCallback, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import { uid } from 'uid';
 import { observer } from 'mobx-react-lite';
@@ -6,9 +6,6 @@ import { observer } from 'mobx-react-lite';
 import { Button } from '../components/Button';
 import { Total } from '../components/Total';
 import { Card } from '../components/Card';
-
-import { useHttp } from '../hooks/http.hook';
-import { AuthContext } from '../context/AuthContext';
 
 import debt from '../store/Debt';
 
