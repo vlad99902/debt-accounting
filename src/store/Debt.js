@@ -219,5 +219,8 @@ class Debt {
   setUserId(userId) {
     this.userId = userId;
   }
+  setPathName(pathname) {
+    this.pathName = pathname
+  }
 }
 export default new Debt();
