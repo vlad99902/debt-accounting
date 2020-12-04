@@ -1,15 +1,7 @@
 import { makeAutoObservable } from 'mobx';
 import request from '../functions/request';
 class Debt {
-  store = [
-    { id: 'waknf', title: 'Testing', sum: 0, completed: false, owe: true },
-    { id: '124512', title: 'test2', sum: 1000, completed: true, owe: true },
-    { id: 'sadasd', title: 'Testing', sum: 3000, completed: true, owe: true },
-    { id: '112', title: 'test4', sum: 2000, completed: true, owe: true },
-    { id: 'wakfefwefnf', title: 'first', sum: 0, completed: false, owe: false },
-    { id: 'dasfknads', title: 'Пизда', sum: 0, completed: false, owe: false },
-    { id: '214234', title: 'Пизда', sum: 0, completed: false, owe: false },
-  ];
+  store = [];
 
   isAuth = false;
   email = '';
@@ -31,6 +23,7 @@ class Debt {
         this.setIsAuth(true);
         this.setUserId(data.userId);
         //TODO fetch start info
+        this.getAllDebts();
       }
     } catch (error) {
       console.log('token was not found');
@@ -45,7 +38,7 @@ class Debt {
    * @param {*} password
    */
 
-  *login(email, password) {
+  *login({ email, password }) {
     this.setLoading(true);
     try {
       const data = yield request('/api/auth/login', 'POST', '', {
@@ -62,14 +55,20 @@ class Debt {
       this.setIsAuth(true);
 
       //TODO Fetch needed info
+      this.getAllDebts();
     } catch (error) {
-      throw new Error(error.message);
+      console.log(error);
     } finally {
       this.setLoading(false);
     }
   }
 
-  *register(email, password) {
+  /**
+   * Registration request
+   * @param {*} param0
+   */
+
+  *register({ email, password }) {
     this.setLoading(true);
     try {
       const data = yield request('/api/auth/register', 'POST', '', {
@@ -87,7 +86,19 @@ class Debt {
 
       //TODO Fetch needed info
     } catch (error) {
-      throw new Error(error.message);
+      console.log(error);
+    } finally {
+      this.setLoading(false);
+    }
+  }
+
+  *getAllDebts() {
+    this.setLoading(true);
+    try {
+      const debts = yield request('/api/debt', 'GET', this.token);
+      this.setStore(debts);
+    } catch (error) {
+      console.log(error);
     } finally {
       this.setLoading(false);
     }

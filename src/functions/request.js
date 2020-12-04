@@ -2,7 +2,7 @@ export default async function request(url, method = 'GET', token, data = null) {
   try {
     const headers = {};
     if (token) {
-      headers['auth-token'] = token;
+      headers['Authorization'] = `Bearer ${token}`;
     }
     let body = null;
 

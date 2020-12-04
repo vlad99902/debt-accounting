@@ -21,7 +21,7 @@ export const AuthPage = observer(() => {
 
   const registerHandler = async () => {
     try {
-      await debt.register(form.email, form.password);
+      await debt.register({ ...form });
     } catch (e) {
       console.log(e);
     }
@@ -29,7 +29,7 @@ export const AuthPage = observer(() => {
 
   const loginHandler = async () => {
     try {
-      await debt.login(form.email, form.password);
+      await debt.login({ ...form });
     } catch (e) {
       console.log(e);
     }

@@ -12,8 +12,9 @@ export const Card = observer(({ items = [] }) => {
       return <h3>Empty yet</h3>;
     } else {
       domResult = items.map((item) => {
+        // console.log(item._id);
         return (
-          <div className="card__item" key={item.id}>
+          <div className="card__item" key={item._id}>
             <Item {...item} />
           </div>
         );
