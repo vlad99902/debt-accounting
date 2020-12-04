@@ -1,20 +1,16 @@
-import React from 'react'
+import React from 'react';
 
-import '../styles/PageHeader.sass'
+import '../styles/PageHeader.sass';
 
-import { Total } from '../components/Total'
+import { Total } from '../components/Total';
 
-import debt from '../store/Debt'
-import { NavLink } from 'react-router-dom'
-import { Header } from './Header'
+import debt from '../store/Debt';
+import { NavLink } from 'react-router-dom';
+import { Header } from './Header';
 
-export const PageHeader = ({
-  children,
-  userName = 'kekw'
-}) => {
-
+export const PageHeader = ({ mb = '0px', userName = 'kekw' }) => {
   return (
-    <div className="wrapper">
+    <div className="wrapper" style={{ marginBottom: mb }}>
       <div className="container">
         <nav className="page-header">
           <div className="page-header__logo">
@@ -24,20 +20,24 @@ export const PageHeader = ({
           </div>
           <div className="page-header__navigation">
             <div className="page-header__nav-el page-header__balance">
-              <Total total={debt.allTotal} fz="18px" fw="600">Balance: </Total>
+              <Total total={debt.allTotal} fz="18px" fw="600">
+                Balance:{' '}
+              </Total>
             </div>
             <div className="page-header__nav-el page-header__user">
               {userName}
             </div>
             <div className="page-header__nav-el page-header__logout">
-              <a href="/home" onClick={() => debt.logout()} >log out</a>
+              <a href="/home" onClick={() => debt.logout()}>
+                log out
+              </a>
             </div>
           </div>
         </nav>
       </div>
     </div>
-  )
-}
+  );
+};
 
 //
 // {/* <div className="page-header__nav-el page-header__settings">

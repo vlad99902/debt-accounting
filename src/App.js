@@ -8,7 +8,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { useRoutes } from './routes';
 import { useEffect } from 'react';
 
-import { PageHeader } from "./components/PageHeader"
+import { PageHeader } from './components/PageHeader';
 
 export default observer(function App() {
   useEffect(() => {
@@ -18,7 +18,7 @@ export default observer(function App() {
 
   return (
     <BrowserRouter>
-      {debt.isAuth && <PageHeader />}
+      {debt.isAuth && <PageHeader mb="32px" />}
 
       <div>{routes}</div>
     </BrowserRouter>

@@ -45,7 +45,11 @@ export const Item = observer((props) => {
         className="item__checkbox"
       />
 
-      <button onDoubleClick={handleDoubleClick} onKeyPress={handleKeyPress}>
+      <button
+        onDoubleClick={handleDoubleClick}
+        onKeyPress={handleKeyPress}
+        className="item__title"
+      >
         {inputTitle ? (
           <input
             type="text"
@@ -59,7 +63,7 @@ export const Item = observer((props) => {
             onBlur={() => setInputTitle(false)}
           />
         ) : (
-          <h1 className="item__title">{form.title}</h1>
+          <h1>{form.title}</h1>
         )}
       </button>
       <h3 className="item__sum">{props.sum}</h3>
