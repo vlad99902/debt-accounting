@@ -8,7 +8,6 @@ import '../styles/Input.sass';
 import '../App';
 
 //components
-import { PageHeader } from '../components/PageHeader';
 import { Button } from '../components/Button';
 import { Total } from '../components/Total';
 import { Card } from '../components/Card';

@@ -3,8 +3,6 @@ import { observer } from 'mobx-react-lite'
 
 import '../styles/PageHeader.sass';
 
-import { Total } from '../components/Total';
-
 import debt from '../store/Debt';
 import { NavLink } from 'react-router-dom';
 import { Header } from './Header';
@@ -19,8 +17,6 @@ export const PageHeader = observer(({ mb = '0px', }) => {
   debt.allTotal < 0
     ? stl.push('exc-red')
     : stl.push('exc-green')
-
-  console.log(stl);
 
   return (
     <div className="wrapper" style={{ marginBottom: mb }}>
