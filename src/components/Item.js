@@ -7,9 +7,9 @@ import '../styles/Item.sass';
 import debt from '../store/Debt';
 
 export const Item = observer(
-  ({ title = 'title', sum = 0, completed = false, id }) => {
+  ({ title = 'title', sum = 0, completed = false, _id }) => {
     const clearItem = () => {
-      debt.deleteItem(id);
+      debt.deleteItem(_id);
     };
 
     return (
@@ -18,7 +18,7 @@ export const Item = observer(
           type="checkbox"
           checked={completed}
           onChange={() => {
-            debt.changeCompleted(id);
+            debt.changeCompleted(_id);
           }}
           className="item__checkbox"
         />

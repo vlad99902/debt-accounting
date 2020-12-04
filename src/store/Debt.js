@@ -1,7 +1,7 @@
 import { makeAutoObservable } from 'mobx';
 import request from '../functions/request';
 
-const { ObjectID } = require('mongodb');
+import { ObjectID } from 'mongodb';
 
 class Debt {
   store = [];
@@ -132,12 +132,21 @@ class Debt {
     }
   }
 
-  deleteItem(id) {
-    this.setStore(
-      this.store.filter((el) => {
-        return el.id !== id;
-      }),
-    );
+  *deleteItem(id) {
+    try {
+      yield request(`/api/debt/:${id}`, 'DELETE', this.token, {
+        _id: id,
+      });
+
+      let store = this.store;
+      store = store.filter((el) => {
+        console.log(el._id);
+        return el._id !== id;
+      });
+      this.setStore(store);
+    } catch (e) {
+      console.log('mistake here', e);
+    }
   }
 
   changeCompleted(id) {

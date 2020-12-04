@@ -38,7 +38,7 @@ export const AuthPage = observer(() => {
   };
 
   return (
-    <div className="container" onClick={() => console.log('click')}>
+    <div className="container">
       <Header title="Let's start our journey!" fw="500" fz="44px" mb="32px" />
       <EmptyCard position="center">
         <Header title="Register or Log In" />
