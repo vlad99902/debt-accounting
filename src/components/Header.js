@@ -6,8 +6,8 @@ export const Header = ({
   fw = '500',
   fz = '26px',
   ta = 'center',
-  mb = '16px',
-  children
+  mb = '0px',
+  children,
 }) => {
   const style = {
     fontWeight: fw,

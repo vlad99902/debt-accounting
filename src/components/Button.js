@@ -8,7 +8,7 @@ import '../styles/Button.sass';
 export const Button = ({
   children = 'default',
   type = 'should',
-  mr = '12px',
+  mr = '0px',
   onClick = () => {},
   disabled,
 }) => {

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 
-import { uid } from 'uid';
 import { observer } from 'mobx-react-lite';
 import debt from '../store/Debt';
 
@@ -13,31 +12,11 @@ import { PageHeader } from '../components/PageHeader';
 import { Button } from '../components/Button';
 import { Total } from '../components/Total';
 import { Card } from '../components/Card';
-
+import { Header } from '../components/Header';
 
 export const MainPage = observer(() => {
   const [title, setTitle] = useState('');
   const [sum, setSum] = useState(0);
-
-  //test get from server
-
-  //get
-  // const fetchDebts = useCallback(async () => {
-  //   try {
-  //     const fetched = await request('/api/debt', 'GET', null, {
-  //       Authorization: `Bearer ${token}`,
-  //     });
-  //     setDebts(fetched);
-  //   } catch (e) {}
-  // }, [token, request]);
-
-  // useEffect(() => {
-  //   fetchDebts();
-  // }, [fetchDebts]);
-
-  // console.log(debts);
-
-  //post
 
   const clearInput = (stateFunc) => {
     stateFunc('');
@@ -57,35 +36,46 @@ export const MainPage = observer(() => {
   };
 
   return (
-    <>
-      <PageHeader>WASFDS</PageHeader>
-      <div className="container">
 
-        <Total total={debt.allTotal} fw="500" fz="30px" />
-        <div className="lists">
-          <div className="lists__left">
+    <div className="container">
+      <PageHeader>WASFDS</PageHeader>
+      <Total total={debt.allTotal} fw="500" fz="30px" mb="26px" />
+      <div className="lists">
+        <div className="lists__left">
+          <div className="lists__header">
+            <Header ta="left">Debts</Header>
             <Total total={debt.oweTotal} />
-            <div className="lists__card">
-              <Card items={debt.oweList} />
-            </div>
+          </div>
+          <div className="lists__card">
+            <Card items={debt.oweList} />
+
           </div>
 
-          <div className="lists__right">
+
+        <div className="lists__right">
+          <div className="lists__header">
+            <Header ta="left">Debtors</Header>
             <Total total={debt.shouldTotal} />
-            <div className="lists__card">
-              <Card items={debt.shouldList} />
-            </div>
+          </div>
+          <div className="lists__card">
+            <Card items={debt.shouldList} />
+
           </div>
         </div>
 
-        <div className="lists__buttons">
-          <div className="lists__button">
-            <Button text="Add" onClick={() => onClickAdd(true)} />
-          </div>
 
-          <div className="lists__button">
-            <Button text="Add" onClick={() => onClickAdd(false)} />
-          </div>
+      <div className="lists__buttons">
+        <div className="lists__button">
+          <Button text="Add" onClick={() => onClickAdd(true)}>
+            Add debt
+          </Button>
+        </div>
+
+        <div className="lists__button">
+          <Button text="Add" onClick={() => onClickAdd(false)}>
+            Add deptor
+          </Button>
+
         </div>
 
         <div className="lists__inputs">
