@@ -8,13 +8,18 @@ import { BrowserRouter } from 'react-router-dom';
 import { useRoutes } from './routes';
 import { useEffect } from 'react';
 
+import { PageHeader } from "./components/PageHeader"
+
 export default observer(function App() {
   useEffect(() => {
     debt.init();
   }, []);
   const routes = useRoutes(debt.isAuth);
+
   return (
     <BrowserRouter>
+      {debt.isAuth && <PageHeader />}
+
       <div>{routes}</div>
     </BrowserRouter>
   );

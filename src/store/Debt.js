@@ -148,6 +148,14 @@ class Debt {
     }
   }
 
+  logout() {
+    this.setIsAuth(false)
+    this.setToken('')
+    this.setEmail('')
+    this.setUserId('')
+    localStorage.removeItem(this.storageName)
+  }
+
   changeCompleted(id) {
     let store = this.store;
     const index = this.store.findIndex((el) => el.id === id);

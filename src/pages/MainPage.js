@@ -37,9 +37,8 @@ export const MainPage = observer(() => {
 
   return (
     <>
-      <PageHeader>WASFDS</PageHeader>
+
       <div className="container">
-        <Total total={debt.allTotal} fw="500" fz="30px" mb="26px" />
         <div className="lists">
           <div className="lists__left">
             <div className="lists__header">
