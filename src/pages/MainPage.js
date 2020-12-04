@@ -36,46 +36,44 @@ export const MainPage = observer(() => {
   };
 
   return (
-
-    <div className="container">
+    <>
       <PageHeader>WASFDS</PageHeader>
-      <Total total={debt.allTotal} fw="500" fz="30px" mb="26px" />
-      <div className="lists">
-        <div className="lists__left">
-          <div className="lists__header">
-            <Header ta="left">Debts</Header>
-            <Total total={debt.oweTotal} />
+      <div className="container">
+        <Total total={debt.allTotal} fw="500" fz="30px" mb="26px" />
+        <div className="lists">
+          <div className="lists__left">
+            <div className="lists__header">
+              <Header ta="left">Debts</Header>
+              <Total total={debt.oweTotal} />
+            </div>
+            <div className="lists__card">
+              <Card items={debt.oweList} />
+            </div>
           </div>
-          <div className="lists__card">
-            <Card items={debt.oweList} />
 
-          </div>
-
-
-        <div className="lists__right">
-          <div className="lists__header">
-            <Header ta="left">Debtors</Header>
-            <Total total={debt.shouldTotal} />
-          </div>
-          <div className="lists__card">
-            <Card items={debt.shouldList} />
-
+          <div className="lists__right">
+            <div className="lists__header">
+              <Header ta="left">Debtors</Header>
+              <Total total={debt.shouldTotal} />
+            </div>
+            <div className="lists__card">
+              <Card items={debt.shouldList} />
+            </div>
           </div>
         </div>
 
+        <div className="lists__buttons">
+          <div className="lists__button">
+            <Button text="Add" onClick={() => onClickAdd(true)}>
+              Add debt
+            </Button>
+          </div>
 
-      <div className="lists__buttons">
-        <div className="lists__button">
-          <Button text="Add" onClick={() => onClickAdd(true)}>
-            Add debt
-          </Button>
-        </div>
-
-        <div className="lists__button">
-          <Button text="Add" onClick={() => onClickAdd(false)}>
-            Add deptor
-          </Button>
-
+          <div className="lists__button">
+            <Button text="Add" onClick={() => onClickAdd(false)}>
+              Add deptor
+            </Button>
+          </div>
         </div>
 
         <div className="lists__inputs">
