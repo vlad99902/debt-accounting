@@ -50,7 +50,30 @@ class Debt {
         email,
         password,
       });
-      console.log(data);
+      this.setEmail(email);
+      this.setUserId(data.userId);
+      this.setToken(data.token);
+      localStorage.setItem(
+        this.storageName,
+        JSON.stringify({ userId: this.userId, token: this.token }),
+      );
+      this.setIsAuth(true);
+
+      //TODO Fetch needed info
+    } catch (error) {
+      throw new Error(error.message);
+    } finally {
+      this.setLoading(false);
+    }
+  }
+
+  *register(email, password) {
+    this.setLoading(true);
+    try {
+      const data = yield request('/api/auth/register', 'POST', '', {
+        email,
+        password,
+      });
       this.setEmail(email);
       this.setUserId(data.userId);
       this.setToken(data.token);

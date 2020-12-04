@@ -8,16 +8,12 @@ import '../styles/AuthPage.sass';
 import { Header } from '../components/Header';
 import { EmptyCard } from '../components/EmptyCard';
 import { Button } from '../components/Button';
-import { useHttp } from '../hooks/http.hook';
-import { AuthContext } from '../context/AuthContext';
 
 export const AuthPage = observer(() => {
-  const auth = useContext(AuthContext);
-  const { loading, error, request } = useHttp();
   const [form, setForm] = useState({ email: '', password: '' });
 
   //обработка ошибок, которые прилетели с сервера
-  useEffect(() => {}, [error]);
+  // useEffect(() => {}, [error]);
 
   const changeHandler = (event) => {
     setForm({ ...form, [event.target.name]: event.target.value });
@@ -25,17 +21,13 @@ export const AuthPage = observer(() => {
 
   const registerHandler = async () => {
     try {
-      const data = await request('/api/auth/register', 'POST', { ...form });
-      //TODO вывести сообщение
-    } catch (e) {}
+      await debt.register(form.email, form.password);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const loginHandler = async () => {
-    // try {
-    //   const data = await request('/api/auth/login', 'POST', { ...form });
-    //   auth.login(data.token, data.userId);
-    // } catch (e) {}
-    // console.log(...form);
     try {
       await debt.login(form.email, form.password);
     } catch (e) {
@@ -64,12 +56,8 @@ export const AuthPage = observer(() => {
           placeholder="Password"
           onChange={changeHandler}
         />
-        <Button onClick={loginHandler} disabled={loading}>
-          Log In
-        </Button>
-        <Button onClick={registerHandler} disabled={loading}>
-          Register
-        </Button>
+        <Button onClick={loginHandler}>Log In</Button>
+        <Button onClick={registerHandler}>Register</Button>
       </EmptyCard>
     </div>
   );
