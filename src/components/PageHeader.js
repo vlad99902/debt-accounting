@@ -5,6 +5,7 @@ import '../styles/PageHeader.sass'
 import { Total } from '../components/Total'
 
 import debt from '../store/Debt'
+import { NavLink } from 'react-router-dom'
 
 export const PageHeader = ({
   children,
@@ -14,9 +15,9 @@ export const PageHeader = ({
   return (
     <div className="wrapper">
       <div className="container">
-        <div className="page-header">
+        <nav className="page-header">
           <div className="page-header__logo">
-            debt-accounting
+            <NavLink to="/home">debt-accounting</NavLink>
           </div>
           <div className="page-header__navigation">
             <div className="page-header__balance">
@@ -26,14 +27,13 @@ export const PageHeader = ({
               {userName}
             </div>
             <div className="page-header__settings">
-              settings
+              <NavLink to="/settings">settings</NavLink>
             </div>
             <div className="page-header__logout">
               log out
             </div>
           </div>
-
-        </div>
+        </nav>
       </div>
     </div>
   )
