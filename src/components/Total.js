@@ -7,7 +7,7 @@ import '../styles/Total.sass';
 // components
 
 export const Total = observer(
-  ({ total, fw = '400', fz = '26px', ta = 'center', mb = '0px' }) => {
+  ({ total, fw = '400', fz = '26px', ta = 'center', mb = '0px', children = "Total: " }) => {
     return (
       <>
         <h1
@@ -19,7 +19,7 @@ export const Total = observer(
             marginBottom: mb,
           }}
         >
-          Total: <span className="total__sum">{total}</span>
+          {children}<span className="total__sum">{total}</span>
         </h1>
       </>
     );
