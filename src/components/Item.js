@@ -55,6 +55,8 @@ export const Item = observer((props) => {
             placeholder="Title"
             value={form.title}
             onChange={changeHandler}
+            autoFocus
+            onBlur={() => setInputTitle(false)}
           />
         ) : (
           <h1 className="item__title">{form.title}</h1>
