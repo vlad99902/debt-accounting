@@ -9,11 +9,13 @@ import { Header } from '../components/Header';
 import { EmptyCard } from '../components/EmptyCard';
 import { Button } from '../components/Button';
 
+
 export const AuthPage = observer(() => {
   const [form, setForm] = useState({ email: '', password: '' });
 
   //обработка ошибок, которые прилетели с сервера
   // useEffect(() => {}, [error]);
+
 
   const changeHandler = (event) => {
     setForm({ ...form, [event.target.name]: event.target.value });
@@ -21,22 +23,26 @@ export const AuthPage = observer(() => {
 
   const registerHandler = async () => {
     try {
+
       await debt.register({ ...form });
     } catch (e) {
       console.log(e);
     }
+
   };
 
   const loginHandler = async () => {
     try {
+
       await debt.login({ ...form });
     } catch (e) {
       console.log(e);
     }
+
   };
 
   return (
-    <div className="container">
+    <div className="container" onClick={() => console.log('click')}>
       <Header title="Let's start our journey!" fw="500" fz="44px" mb="32px" />
       <EmptyCard position="center">
         <Header title="Register or Log In" />
@@ -63,6 +69,13 @@ export const AuthPage = observer(() => {
           Register
         </Button>
       </EmptyCard>
+      <Button onClick={() => setIsOpen(true)}>Open modal</Button>
+      <Modal
+        isOpen={isOpen}
+        onClose={() => { setIsOpen(false) }}
+      >
+        This is modal
+      </Modal>
     </div>
   );
 });
