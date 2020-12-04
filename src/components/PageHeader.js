@@ -13,10 +13,14 @@ import { Header } from './Header';
 export const PageHeader = observer(({ mb = '0px', }) => {
 
   //const userName = debt.email
-
   // debt.setPathName(window.location.pathname)
-
   // console.log('In header pn = ', debt.pathName);
+  const stl = ['']
+  debt.allTotal < 0
+    ? stl.push('exc-red')
+    : stl.push('exc-green')
+
+  console.log(stl);
 
   return (
     <div className="wrapper" style={{ marginBottom: mb }}>
@@ -31,7 +35,7 @@ export const PageHeader = observer(({ mb = '0px', }) => {
             <div className="page-header__nav-el page-header__balance">
               <NavLink to="/home" activeClassName='active'>
 
-                Balance: {debt.allTotal}
+                Balance: <span className={stl.join('')}>{debt.allTotal}</span>
 
               </NavLink>
             </div>
