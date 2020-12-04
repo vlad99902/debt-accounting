@@ -8,7 +8,6 @@ import '../styles/Input.sass';
 import '../App';
 
 //components
-import { PageHeader } from '../components/PageHeader';
 import { Button } from '../components/Button';
 import { Total } from '../components/Total';
 import { Card } from '../components/Card';
@@ -26,7 +25,7 @@ export const MainPage = observer(() => {
     //TODO изменить добавление (добавлять тип в локальный стор правильно)
 
     await debt.add({
-      title: title || 'Title',
+      title: title.trim() || 'Title',
       sum: +sum || 0,
       completed: false,
       owe,
@@ -37,7 +36,6 @@ export const MainPage = observer(() => {
 
   return (
     <>
-
       <div className="container">
         <div className="lists">
           <div className="lists__left">

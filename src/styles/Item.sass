@@ -1,3 +1,5 @@
+@import "../index.sass"
+
 .item
   display: grid
   grid-template-columns: 10% 60% 20% 10%
@@ -11,9 +13,22 @@
   &__title
     grid-row: 1/2
     grid-column: 2/3
+    text-align: left
+    padding-right: 26px
 
+  &__changed-title
     font-weight: 400
     font-size: 20px
+
+  &__changed-input
+    width: 100%
+    font-size: 16px
+    border-radius: 25px
+    border: 1px solid $karamel
+    padding: 2px 12px
+    color: $korica
+    font-weight: 500
+    outline: none
 
   &__sum
     grid-row: 1/2

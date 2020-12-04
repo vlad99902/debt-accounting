@@ -5,17 +5,16 @@ import { TiDeleteOutline } from 'react-icons/ti';
 import '../styles/Item.sass';
 
 import debt from '../store/Debt';
-//{ titleInput = 'title', sum = 0, completed = false, _id }
 export const Item = observer((props) => {
-  const [inputTitle, setInputTitle] = useState(false);
+  const [input, setInput] = useState({ title: false, sum: false });
 
   const [form, setForm] = useState({
     title: props.title,
+    sum: props.sum,
     completed: props.completed,
   });
 
   const changeHandler = (event) => {
-    console.log(form);
     setForm({ ...form, [event.target.name]: event.target.value });
   };
 
@@ -23,15 +22,38 @@ export const Item = observer((props) => {
     await debt.deleteItem(props._id);
   };
 
-  const handleKeyPress = (event) => {
-    if (event.key === 'Enter') {
-      setInputTitle(false);
+  const submitForm = () => {
+    setInput({ title: false, sum: false });
+    if (form.title === '') {
+      setForm({ ...form, title: 'Title' });
     }
+    if (!form.sum) {
+      setForm({ ...form, sum: 0 });
+    }
+  };
+
+  const cancelSubmitingForm = () => {
+    setInput({ title: false, sum: false });
+    setForm({ title: props.title, sum: props.sum, completed: props.completed });
+  };
+
+  const handlerKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      submitForm();
+    }
+    // if (event.keyCode === 27) {
+    //   console.log('escape pressed');
+    //   cancelSubmitingForm();
+    // }
   };
 
   const handleDoubleClick = (event) => {
     event.preventDefault();
-    setInputTitle(true);
+    if (event.currentTarget.name === 'title') {
+      setInput({ ...input, title: true });
+    } else if (event.currentTarget.name === 'sum') {
+      setInput({ ...input, sum: true });
+    }
   };
 
   return (
@@ -47,26 +69,50 @@ export const Item = observer((props) => {
 
       <button
         onDoubleClick={handleDoubleClick}
-        onKeyPress={handleKeyPress}
+        onKeyPress={handlerKeyPress}
         className="item__title"
+        name="title"
       >
-        {inputTitle ? (
+        {input.title ? (
           <input
             type="text"
             id="title"
             name="title"
-            className="input lists__input"
+            className="item__changed-input"
             placeholder="Title"
             value={form.title}
             onChange={changeHandler}
             autoFocus
-            onBlur={() => setInputTitle(false)}
+            onBlur={() => submitForm()}
           />
         ) : (
-          <h1>{form.title}</h1>
+          <h1 className="item__changed-title">{form.title}</h1>
         )}
       </button>
-      <h3 className="item__sum">{props.sum}</h3>
+
+      <button
+        onDoubleClick={handleDoubleClick}
+        onKeyPress={handlerKeyPress}
+        className="item__sum"
+        name="sum"
+      >
+        {input.sum ? (
+          <input
+            type="number"
+            id="sum"
+            name="sum"
+            className="item__changed-input"
+            placeholder="0"
+            value={form.sum}
+            onChange={changeHandler}
+            autoFocus
+            onBlur={() => submitForm()}
+          />
+        ) : (
+          <h3 className="item__sum">{form.sum}</h3>
+        )}
+      </button>
+
       <button className="item__button">
         <TiDeleteOutline className="item__button-icon" onClick={clearItem} />
       </button>
