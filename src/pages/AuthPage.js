@@ -8,14 +8,18 @@ import { EmptyCard } from '../components/EmptyCard';
 import { Button } from '../components/Button';
 import { useHttp } from '../hooks/http.hook';
 import { AuthContext } from '../context/AuthContext';
+import { Modal } from '../components/Modal';
 
 export const AuthPage = () => {
+
+  const [isOpen, setIsOpen] = useState(false)
+
   const auth = useContext(AuthContext);
   const { loading, error, request } = useHttp();
   const [form, setForm] = useState({ email: '', password: '' });
 
   //обработка ошибок, которые прилетели с сервера
-  useEffect(() => {}, [error]);
+  useEffect(() => { }, [error]);
 
   const changeHandler = (event) => {
     setForm({ ...form, [event.target.name]: event.target.value });
@@ -25,18 +29,18 @@ export const AuthPage = () => {
     try {
       const data = await request('/api/auth/register', 'POST', { ...form });
       //TODO вывести сообщение
-    } catch (e) {}
+    } catch (e) { }
   };
 
   const loginHandler = async () => {
     try {
       const data = await request('/api/auth/login', 'POST', { ...form });
       auth.login(data.token, data.userId);
-    } catch (e) {}
+    } catch (e) { }
   };
 
   return (
-    <div className="container">
+    <div className="container" onClick={() => console.log('click')}>
       <Header title="Let's start our journey!" fw="500" fz="44px" mb="32px" />
       <EmptyCard position="center">
         <Header title="Register or Log In" />
@@ -63,6 +67,13 @@ export const AuthPage = () => {
           Register
         </Button>
       </EmptyCard>
+      <Button onClick={() => setIsOpen(true)}>Open modal</Button>
+      <Modal
+        isOpen={isOpen}
+        onClose={() => { setIsOpen(false) }}
+      >
+        This is modal
+      </Modal>
     </div>
   );
 };

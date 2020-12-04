@@ -1,0 +1,31 @@
+@import "../index"
+
+.overlay
+  background-color: rgba(0, 0, 0, 0.80)
+  z-index: 1000
+  position: fixed
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+.wrapper
+  // position: fixed
+  z-index: 1000
+  display: flex
+  align-items: center
+  justify-content: center
+.modal
+  z-index: 1000
+  border: 5px solid $perec
+  border-radius: 25px
+  background-color: $slivki
+  display: flex
+  justify-content: center
+  align-items: center
+  flex-direction: column
+  padding: 16px
+
+  &__content
+    color: $korica
+    font-weight: 600
+    flex: 0 0 auto
