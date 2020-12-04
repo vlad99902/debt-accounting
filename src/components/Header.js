@@ -3,11 +3,11 @@ import React from 'react';
 import '../styles/Header.sass';
 
 export const Header = ({
-  title = 'Header',
   fw = '500',
   fz = '26px',
   ta = 'center',
   mb = '16px',
+  children
 }) => {
   const style = {
     fontWeight: fw,
@@ -17,7 +17,7 @@ export const Header = ({
   };
   return (
     <h1 className="header" style={style}>
-      {title}
+      {children}
     </h1>
   );
 };

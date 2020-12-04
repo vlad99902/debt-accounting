@@ -2,11 +2,6 @@ import React, { useState } from 'react';
 
 import { uid } from 'uid';
 import { observer } from 'mobx-react-lite';
-
-import { Button } from '../components/Button';
-import { Total } from '../components/Total';
-import { Card } from '../components/Card';
-
 import debt from '../store/Debt';
 
 //styles
@@ -14,6 +9,11 @@ import '../styles/Input.sass';
 import '../App';
 
 //components
+import { PageHeader } from '../components/PageHeader';
+import { Button } from '../components/Button';
+import { Total } from '../components/Total';
+import { Card } from '../components/Card';
+
 
 export const MainPage = observer(() => {
   const [title, setTitle] = useState('');
@@ -58,6 +58,7 @@ export const MainPage = observer(() => {
 
   return (
     <div className="container">
+      <PageHeader>WASFDS</PageHeader>
       <Total total={debt.allTotal} fw="500" fz="30px" />
       <div className="lists">
         <div className="lists__left">
