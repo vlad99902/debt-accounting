@@ -17,6 +17,10 @@ export default async function request(url, method = 'GET', token, data = null) {
       body,
     });
 
+    if (!response.ok) {
+      throw new Error(data.message || 'Something wrong in fetch');
+    }
+
     return await response.json();
   } catch (error) {
     throw new Error(error.message);

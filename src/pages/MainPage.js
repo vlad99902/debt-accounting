@@ -23,9 +23,6 @@ export const MainPage = observer(() => {
   const [sum, setSum] = useState(0);
 
   //test get from server
-  const [debts, setDebts] = useState([]);
-  const { loading, request } = useHttp();
-  const auth = useContext(AuthContext);
 
   //get
   // const fetchDebts = useCallback(async () => {

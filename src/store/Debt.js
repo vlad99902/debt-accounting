@@ -1,5 +1,5 @@
 import { makeAutoObservable } from 'mobx';
-
+import request from '../functions/request';
 class Debt {
   store = [
     { id: 'waknf', title: 'Testing', sum: 0, completed: false, owe: true },
@@ -12,8 +12,11 @@ class Debt {
   ];
 
   isAuth = false;
+  email = '';
   token = '';
+  userId = '';
   loading = false;
+  storageName = 'userData';
 
   constructor() {
     makeAutoObservable(this);
@@ -22,15 +25,46 @@ class Debt {
   init() {
     this.setLoading(true);
     try {
-      const data = JSON.parse(localStorage.getItem(storageName));
+      const data = JSON.parse(localStorage.getItem(this.storageName));
       if (data && data.token) {
         this.setToken(data.token);
         this.setIsAuth(true);
-        // yield this.fetchInitInfo();
-        // yield this.fetchHighlights();
+        this.setUserId(data.userId);
+        //TODO fetch start info
       }
     } catch (error) {
       console.log('token was not found');
+    }
+  }
+
+  /**
+   * Lohin user in system if user not authorized
+   * @param {*} email
+   * @param {*} password
+   */
+
+  *login(email, password) {
+    this.setLoading(true);
+    try {
+      const data = yield request('/api/auth/login', 'POST', '', {
+        email,
+        password,
+      });
+      console.log(data);
+      this.setEmail(email);
+      this.setUserId(data.userId);
+      this.setToken(data.token);
+      localStorage.setItem(
+        this.storageName,
+        JSON.stringify({ userId: this.userId, token: this.token }),
+      );
+      this.setIsAuth(true);
+
+      //TODO Fetch needed info
+    } catch (error) {
+      throw new Error(error.message);
+    } finally {
+      this.setLoading(false);
     }
   }
 
@@ -125,6 +159,12 @@ class Debt {
 
   setIsAuth(isAuth) {
     this.isAuth = isAuth;
+  }
+  setEmail(email) {
+    this.email = email;
+  }
+  setUserId(userId) {
+    this.userId = userId;
   }
 }
 export default new Debt();

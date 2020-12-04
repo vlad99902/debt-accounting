@@ -1,4 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { observer } from 'mobx-react-lite';
+import debt from '../store/Debt';
 
 import '../styles/Input.sass';
 import '../styles/AuthPage.sass';
@@ -9,7 +11,7 @@ import { Button } from '../components/Button';
 import { useHttp } from '../hooks/http.hook';
 import { AuthContext } from '../context/AuthContext';
 
-export const AuthPage = () => {
+export const AuthPage = observer(() => {
   const auth = useContext(AuthContext);
   const { loading, error, request } = useHttp();
   const [form, setForm] = useState({ email: '', password: '' });
@@ -29,10 +31,16 @@ export const AuthPage = () => {
   };
 
   const loginHandler = async () => {
+    // try {
+    //   const data = await request('/api/auth/login', 'POST', { ...form });
+    //   auth.login(data.token, data.userId);
+    // } catch (e) {}
+    // console.log(...form);
     try {
-      const data = await request('/api/auth/login', 'POST', { ...form });
-      auth.login(data.token, data.userId);
-    } catch (e) {}
+      await debt.login(form.email, form.password);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (
@@ -65,4 +73,4 @@ export const AuthPage = () => {
       </EmptyCard>
     </div>
   );
-};
+});
