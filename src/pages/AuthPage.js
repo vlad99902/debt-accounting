@@ -41,7 +41,7 @@ export const AuthPage = observer(() => {
     <div className="container">
       <Header title="Let's start our journey!" fw="500" fz="44px" mb="32px" />
       <EmptyCard position="center">
-        <Header title="Register or Log In" />
+        <Header>Register or Log In</Header>
         <input
           type="email"
           id="email"
