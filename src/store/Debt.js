@@ -184,7 +184,7 @@ class Debt {
   }
 
   get allTotal() {
-    return Math.abs(this.shouldTotal - this.oweTotal);
+    return this.shouldTotal - this.oweTotal;
   }
 
   /**
