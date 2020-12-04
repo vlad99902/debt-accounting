@@ -12,7 +12,6 @@ class Debt {
   userId = '';
   loading = false;
   storageName = 'userData';
-  pathName = window.location.pathname
 
   constructor() {
     makeAutoObservable(this);
