@@ -5,13 +5,14 @@ import debt from '../store/Debt';
 
 //styles
 import '../styles/Input.sass';
-import '../App';
+import '../styles/MainPage.sass';
 
 //components
 import { Button } from '../components/Button';
 import { Total } from '../components/Total';
 import { Card } from '../components/Card';
 import { Header } from '../components/Header';
+import { EmptyCard } from '../components/EmptyCard';
 
 export const MainPage = observer(() => {
   const [title, setTitle] = useState('');
@@ -58,41 +59,46 @@ export const MainPage = observer(() => {
             </div>
           </div>
         </div>
+        <EmptyCard>
 
-        <div className="lists__buttons">
-          <div className="lists__button">
-            <Button text="Add" onClick={() => onClickAdd(true)}>
-              Add debt
+          <Header mb="16px">Add</Header>
+          <div className="add-card">
+            <div className="add-card__inputs">
+              <input
+                type="text"
+                id="title"
+                name="title"
+                className="input add-card__input"
+                placeholder="Title"
+                value={title}
+                onChange={(event) => setTitle(event.target.value)}
+              />
+              <input
+                className="input add-card__input"
+                type="number"
+                id="sum"
+                name="sum"
+                placeholder="Sum"
+                value={sum}
+                onChange={(event) => setSum(event.target.value)}
+              />
+            </div>
+
+            <div className="add-card__buttons">
+              <div className="add-card__button">
+                <Button text="Add" onClick={() => onClickAdd(true)}>
+                  Add debt
             </Button>
-          </div>
+              </div>
 
-          <div className="lists__button">
-            <Button text="Add" onClick={() => onClickAdd(false)}>
-              Add deptor
+              <div className="add-card__button">
+                <Button text="Add" onClick={() => onClickAdd(false)}>
+                  Add deptor
             </Button>
+              </div>
+            </div>
           </div>
-        </div>
-
-        <div className="lists__inputs">
-          <input
-            type="text"
-            id="title"
-            name="title"
-            className="input lists__input"
-            placeholder="Title"
-            value={title}
-            onChange={(event) => setTitle(event.target.value)}
-          />
-          <input
-            className="input lists__input"
-            type="number"
-            id="sum"
-            name="sum"
-            placeholder="Sum"
-            value={sum}
-            onChange={(event) => setSum(event.target.value)}
-          />
-        </div>
+        </EmptyCard>
       </div>
     </>
   );
