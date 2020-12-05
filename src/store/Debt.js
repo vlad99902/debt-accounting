@@ -161,13 +161,6 @@ class Debt {
   }
 
   *updateItem(item) {
-    console.log(item);
-    // if (item.title === '') {
-    //   item.title = 'Title';
-    // }
-    // if (item.sum === '') {
-    //   item.sum = 0;
-    // }
     try {
       yield request(`/api/debt/:${item._id}`, 'PUT', this.token, {
         item,

@@ -18,10 +18,9 @@ export const Item = observer((props) => {
     debt.deleteItem(props._id);
   };
 
-  const changeCompleted = () => {
-    setCompleted(!completed);
-    debt.updateItem({ _id: props._id, completed: completed });
-    console.log(completed);
+  const changeCompleted = (event) => {
+    setCompleted(event.target.checked);
+    debt.updateItem({ _id: props._id, completed: event.target.checked });
   };
 
   // const cancelSubmitingForm = () => {
@@ -52,17 +51,15 @@ export const Item = observer((props) => {
     setInput({ title: false, sum: false });
     checkFormValues();
     let objectToSend = {
-      // _id: props._id,
-      // title: form.title || 'Title',
-      // sum: +form.sum || 0,
+      _id: props._id,
+      title: form.title || 'Title',
+      sum: +form.sum || 0,
     };
-    for (let key in form) {
-      if (form[key] !== props[key]) {
-        objectToSend = { ...objectToSend, [key]: form[key] };
-      }
-    }
-    console.log(objectToSend);
-    console.log(Object.keys(objectToSend).length);
+    // for (let key in form) {
+    //   if (form[key] !== props[key]) {
+    //     objectToSend = { ...objectToSend, [key]: form[key] };
+    //   }
+    // }
     if (Object.keys(objectToSend).length !== 0) {
       debt.updateItem({ _id: props._id, ...objectToSend });
     }
