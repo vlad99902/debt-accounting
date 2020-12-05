@@ -17,16 +17,6 @@ class Debt {
     makeAutoObservable(this);
   }
 
-  /**
-   *
-   *
-   * MUST BE ASYNC
-   * BECAUSE GET ALL DEBTS
-   *
-   *
-   *
-   *
-   */
   *init() {
     this.setLoading(true);
     try {
@@ -119,14 +109,12 @@ class Debt {
    */
 
   *getAllDebts() {
-    this.setLoading(true);
     try {
       const debts = yield request('/api/debt', 'GET', this.token);
       this.setStore(debts);
     } catch (error) {
       console.log(error);
     } finally {
-      this.setLoading(false);
     }
   }
 

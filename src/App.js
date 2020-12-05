@@ -9,6 +9,7 @@ import { useRoutes } from './routes';
 import { useEffect } from 'react';
 
 import { PageHeader } from './components/PageHeader';
+import { Loading } from './components/Loading';
 
 export default observer(function App() {
   useEffect(() => {
@@ -21,7 +22,7 @@ export default observer(function App() {
   return (
     <BrowserRouter>
       {debt.isAuth && <PageHeader mb="32px" />}
-      {!debt.loading && <div>{routes}</div>}
+      {debt.loading ? <Loading /> : <div>{routes}</div>}
     </BrowserRouter>
   );
 });

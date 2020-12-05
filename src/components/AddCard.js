@@ -10,11 +10,8 @@ import '../styles/AddCard.sass';
 
 //components
 import { Button } from '../components/Button';
-import { Total } from '../components/Total';
-import { Card } from '../components/Card';
 import { Header } from '../components/Header';
 import { EmptyCard } from '../components/EmptyCard';
-import { values } from 'mobx';
 
 export const AddCard = observer(({ mt = '16px' }) => {
   const style = {
