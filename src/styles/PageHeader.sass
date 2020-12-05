@@ -33,9 +33,9 @@
     align-items: center
 
     &:hover
+
       .page-header__user-icon
-        transition-duration: 10s
-        transform: rotate(5turn)
+        animation: rotate 3s infinite linear
 
   &__user-icon
     width: 20px
@@ -57,7 +57,7 @@
     transition-duration: 3s
     &:hover
       .path-arrow
-        transform: translate(-2px)
+        animation: arrow 0.35s infinite linear alternate
 
   &__logout-icon
     width: 20px
@@ -97,3 +97,15 @@
 
 .exc-green
   color: $green
+
+// animations
+
+@keyframes arrow
+  0%
+    transform: translate(0px)
+  100%
+    transform: translate(-2px)
+
+@keyframes rotate
+  100%
+    transform: rotate(1turn)
