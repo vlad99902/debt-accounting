@@ -16,8 +16,7 @@ import { Header } from '../components/Header';
 import { EmptyCard } from '../components/EmptyCard';
 import { values } from 'mobx';
 
-export const AddCard = observer(({ mt = "16px" }) => {
-
+export const AddCard = observer(({ mt = '16px' }) => {
   const style = {
     marginTop: mt,
   };
@@ -29,10 +28,10 @@ export const AddCard = observer(({ mt = "16px" }) => {
     stateFunc('');
   };
 
-  const onClickAdd = async (owe = true) => {
+  const onClickAdd = (owe = true) => {
     //TODO изменить добавление (добавлять тип в локальный стор правильно)
 
-    await debt.add({
+    debt.add({
       title: title.trim() || 'Title',
       sum: +sum || 0,
       completed: false,
@@ -70,10 +69,9 @@ export const AddCard = observer(({ mt = "16px" }) => {
               decimalScale={2}
               fixedDecimalScale={true}
               onValueChange={(values) => {
-                const { floatValue } = values
-                setSum(floatValue)
-              }
-              }
+                const { floatValue } = values;
+                setSum(floatValue);
+              }}
             />
           </div>
           <div className="add-card__buttons">
@@ -91,6 +89,6 @@ export const AddCard = observer(({ mt = "16px" }) => {
           </div>
         </div>
       </EmptyCard>
-    </div >
-  )
-})
+    </div>
+  );
+});

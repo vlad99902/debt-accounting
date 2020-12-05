@@ -21,17 +21,17 @@ export const AuthPage = observer(() => {
     setForm({ ...form, [event.target.name]: event.target.value });
   };
 
-  const registerHandler = async () => {
+  const registerHandler = () => {
     try {
-      await debt.register({ ...form });
+      debt.register({ ...form });
     } catch (e) {
       console.log(e);
     }
   };
 
-  const loginHandler = async () => {
+  const loginHandler = () => {
     try {
-      await debt.login({ ...form });
+      debt.login({ ...form });
     } catch (e) {
       console.log(e);
     }
@@ -68,7 +68,6 @@ export const AuthPage = observer(() => {
             Register
           </Button>
         </div>
-
       </EmptyCard>
       <Button onClick={() => setIsOpen(true)}>Open modal</Button>
       <Modal

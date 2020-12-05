@@ -27,7 +27,7 @@ class Debt {
    *
    *
    */
-  init() {
+  *init() {
     this.setLoading(true);
     try {
       const data = JSON.parse(localStorage.getItem(this.storageName));
@@ -37,7 +37,7 @@ class Debt {
         this.setUserId(data.userId);
         this.setEmail(data.email);
         //TODO fetch start info
-        this.getAllDebts();
+        yield this.getAllDebts();
       }
     } catch (error) {
       console.log('token was not found');
@@ -173,13 +173,13 @@ class Debt {
   }
 
   *updateItem(item) {
-    if (item.title === '') {
-      item.title = 'Title';
-    }
-    if (item.sum === '') {
-      item.sum = 0;
-    }
-    const { _id, ...other } = item;
+    console.log(item);
+    // if (item.title === '') {
+    //   item.title = 'Title';
+    // }
+    // if (item.sum === '') {
+    //   item.sum = 0;
+    // }
     try {
       yield request(`/api/debt/:${item._id}`, 'PUT', this.token, {
         item,

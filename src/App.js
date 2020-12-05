@@ -21,8 +21,7 @@ export default observer(function App() {
   return (
     <BrowserRouter>
       {debt.isAuth && <PageHeader mb="32px" />}
-
-      <div>{routes}</div>
+      {!debt.loading && <div>{routes}</div>}
     </BrowserRouter>
   );
 });

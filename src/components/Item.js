@@ -14,19 +14,19 @@ export const Item = observer((props) => {
     sum: props.sum,
   });
 
-  const clearItem = async () => {
-    await debt.deleteItem(props._id);
+  const clearItem = () => {
+    debt.deleteItem(props._id);
   };
 
-  const changeCompleted = async () => {
+  const changeCompleted = () => {
     setCompleted(!completed);
-    await debt.updateItem({ _id: props._id, completed: completed });
+    debt.updateItem({ _id: props._id, completed: completed });
     console.log(completed);
   };
 
   const cancelSubmitingForm = () => {
     setInput({ title: false, sum: false });
-    setForm({ title: props.title, sum: props.sum, completed: props.completed });
+    setForm({ title: props.title, sum: props.sum });
   };
 
   const handlerKeyPress = (event) => {
@@ -48,7 +48,7 @@ export const Item = observer((props) => {
     }
   };
 
-  const submitForm = async () => {
+  const submitForm = () => {
     setInput({ title: false, sum: false });
     if (!form.title) {
       setForm({ ...form, title: 'Title' });
@@ -56,7 +56,11 @@ export const Item = observer((props) => {
     if (!form.sum) {
       setForm({ ...form, sum: 0 });
     }
-    let objectToSend = {};
+    let objectToSend = {
+      _id: props._id,
+      title: form.title || 'Title',
+      sum: +form.sum || 0,
+    };
     for (let key in form) {
       if (form[key] !== props[key]) {
         objectToSend = { ...objectToSend, [key]: form[key] };
@@ -64,7 +68,7 @@ export const Item = observer((props) => {
     }
     console.log(Object.keys(objectToSend).length);
     if (Object.keys(objectToSend).length !== 0) {
-      await debt.updateItem({ _id: props._id, ...objectToSend });
+      debt.updateItem({ _id: props._id, ...objectToSend });
     }
   };
 
