@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { observer } from 'mobx-react-lite';
 import { TiDeleteOutline } from 'react-icons/ti';
 
@@ -7,30 +7,21 @@ import '../styles/Item.sass';
 import debt from '../store/Debt';
 export const Item = observer((props) => {
   const [input, setInput] = useState({ title: false, sum: false });
+  const [completed, setCompleted] = useState(props.completed);
 
   const [form, setForm] = useState({
     title: props.title,
     sum: props.sum,
-    completed: props.completed,
   });
-
-  const changeHandler = (event) => {
-    setForm({ ...form, [event.target.name]: event.target.value });
-  };
 
   const clearItem = async () => {
     await debt.deleteItem(props._id);
   };
 
-  const submitForm = async () => {
-    setInput({ title: false, sum: false });
-    if (form.title === '') {
-      setForm({ ...form, title: 'Title' });
-    }
-    if (!form.sum) {
-      setForm({ ...form, sum: 0 });
-    }
-    await debt.updateItem({ _id: props._id, ...form });
+  const changeCompleted = async () => {
+    setCompleted(!completed);
+    await debt.updateItem({ _id: props._id, completed: completed });
+    console.log(completed);
   };
 
   const cancelSubmitingForm = () => {
@@ -57,14 +48,37 @@ export const Item = observer((props) => {
     }
   };
 
+  const submitForm = async () => {
+    setInput({ title: false, sum: false });
+    if (!form.title) {
+      setForm({ ...form, title: 'Title' });
+    }
+    if (!form.sum) {
+      setForm({ ...form, sum: 0 });
+    }
+    let objectToSend = {};
+    for (let key in form) {
+      if (form[key] !== props[key]) {
+        objectToSend = { ...objectToSend, [key]: form[key] };
+      }
+    }
+    console.log(Object.keys(objectToSend).length);
+    if (Object.keys(objectToSend).length !== 0) {
+      await debt.updateItem({ _id: props._id, ...objectToSend });
+    }
+  };
+
+  const changeHandler = (event) => {
+    setForm({ ...form, [event.target.name]: event.target.value });
+  };
+
   return (
     <div className="item">
       <input
         type="checkbox"
-        checked={props.completed}
-        onChange={() => {
-          debt.changeCompleted(props._id);
-        }}
+        name="completed"
+        checked={completed}
+        onChange={changeCompleted}
         className="item__checkbox"
       />
 

@@ -17,6 +17,16 @@ class Debt {
     makeAutoObservable(this);
   }
 
+  /**
+   *
+   *
+   * MUST BE ASYNC
+   * BECAUSE GET ALL DEBTS
+   *
+   *
+   *
+   *
+   */
   init() {
     this.setLoading(true);
     try {
@@ -154,7 +164,13 @@ class Debt {
   }
 
   *updateItem(item) {
-    console.log(item);
+    if (item.title === '') {
+      item.title = 'Title';
+    }
+    if (item.sum === '') {
+      item.sum = 0;
+    }
+    const { _id, ...other } = item;
     try {
       yield request(`/api/debt/:${item._id}`, 'PUT', this.token, {
         item,
