@@ -35,6 +35,7 @@ class Debt {
         this.setToken(data.token);
         this.setIsAuth(true);
         this.setUserId(data.userId);
+        this.setEmail(data.email);
         //TODO fetch start info
         this.getAllDebts();
       }
@@ -63,7 +64,11 @@ class Debt {
       this.setToken(data.token);
       localStorage.setItem(
         this.storageName,
-        JSON.stringify({ userId: this.userId, token: this.token }),
+        JSON.stringify({
+          email: this.email,
+          userId: this.userId,
+          token: this.token,
+        }),
       );
       this.setIsAuth(true);
 
@@ -93,7 +98,11 @@ class Debt {
       this.setToken(data.token);
       localStorage.setItem(
         this.storageName,
-        JSON.stringify({ userId: this.userId, token: this.token }),
+        JSON.stringify({
+          email: this.email,
+          userId: this.userId,
+          token: this.token,
+        }),
       );
       this.setIsAuth(true);
 
@@ -228,7 +237,7 @@ class Debt {
   get shouldTotal() {
     return this.store.reduce((sum, elem) => {
       if (!elem.owe && !elem.completed) sum += elem.sum;
-      return sum;
+      return +sum;
     }, 0);
   }
 
