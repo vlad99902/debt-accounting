@@ -17,6 +17,16 @@ class Debt {
     makeAutoObservable(this);
   }
 
+  /**
+   *
+   *
+   * MUST BE ASYNC
+   * BECAUSE GET ALL DEBTS
+   *
+   *
+   *
+   *
+   */
   init() {
     this.setLoading(true);
     try {
@@ -132,6 +142,11 @@ class Debt {
     }
   }
 
+  /**
+   * Delete item by id
+   * @param {*} id
+   */
+
   *deleteItem(id) {
     try {
       yield request(`/api/debt/:${id}`, 'DELETE', this.token, {
@@ -148,12 +163,38 @@ class Debt {
     }
   }
 
+  *updateItem(item) {
+    if (item.title === '') {
+      item.title = 'Title';
+    }
+    if (item.sum === '') {
+      item.sum = 0;
+    }
+    const { _id, ...other } = item;
+    try {
+      yield request(`/api/debt/:${item._id}`, 'PUT', this.token, {
+        item,
+      });
+
+      let store = this.store;
+      store = store.map((el) => {
+        if (el._id === item._id) {
+          return (el = { ...el, ...item });
+        }
+        return el;
+      });
+      this.setStore(store);
+    } catch (e) {
+      console.log('mistake here', e);
+    }
+  }
+
   logout() {
-    this.setIsAuth(false)
-    this.setToken('')
-    this.setEmail('')
-    this.setUserId('')
-    localStorage.removeItem(this.storageName)
+    this.setIsAuth(false);
+    this.setToken('');
+    this.setEmail('');
+    this.setUserId('');
+    localStorage.removeItem(this.storageName);
   }
 
   changeCompleted(id) {
@@ -218,9 +259,6 @@ class Debt {
   }
   setUserId(userId) {
     this.userId = userId;
-  }
-  setPathName(pathname) {
-    this.pathName = pathname
   }
 }
 export default new Debt();
