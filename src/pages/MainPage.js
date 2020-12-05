@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { observer } from 'mobx-react-lite';
 import debt from '../store/Debt';
@@ -8,11 +8,9 @@ import '../styles/Input.sass';
 import '../styles/MainPage.sass';
 
 //components
-import { Button } from '../components/Button';
 import { Total } from '../components/Total';
 import { Card } from '../components/Card';
 import { Header } from '../components/Header';
-import { EmptyCard } from '../components/EmptyCard';
 import { AddCard } from '../components/AddCard';
 
 export const MainPage = observer(() => {

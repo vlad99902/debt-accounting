@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { observer } from 'mobx-react-lite';
 import { TiDeleteOutline } from 'react-icons/ti';
 
@@ -24,10 +24,10 @@ export const Item = observer((props) => {
     console.log(completed);
   };
 
-  const cancelSubmitingForm = () => {
-    setInput({ title: false, sum: false });
-    setForm({ title: props.title, sum: props.sum });
-  };
+  // const cancelSubmitingForm = () => {
+  //   setInput({ title: false, sum: false });
+  //   setForm({ title: props.title, sum: props.sum });
+  // };
 
   const handlerKeyPress = (event) => {
     if (event.key === 'Enter') {
@@ -50,25 +50,30 @@ export const Item = observer((props) => {
 
   const submitForm = () => {
     setInput({ title: false, sum: false });
-    if (!form.title) {
-      setForm({ ...form, title: 'Title' });
-    }
-    if (!form.sum) {
-      setForm({ ...form, sum: 0 });
-    }
+    checkFormValues();
     let objectToSend = {
-      _id: props._id,
-      title: form.title || 'Title',
-      sum: +form.sum || 0,
+      // _id: props._id,
+      // title: form.title || 'Title',
+      // sum: +form.sum || 0,
     };
     for (let key in form) {
       if (form[key] !== props[key]) {
         objectToSend = { ...objectToSend, [key]: form[key] };
       }
     }
+    console.log(objectToSend);
     console.log(Object.keys(objectToSend).length);
     if (Object.keys(objectToSend).length !== 0) {
       debt.updateItem({ _id: props._id, ...objectToSend });
+    }
+  };
+
+  const checkFormValues = () => {
+    if (form.title === '') {
+      setForm({ ...form, title: 'Title' });
+    }
+    if (form.sum === 0) {
+      setForm({ ...form, sum: 0 });
     }
   };
 

@@ -37,7 +37,6 @@ export const AddCard = observer(({ mt = '16px' }) => {
     clearInput(setTitle);
     clearInput(setSum);
   };
-  console.log(sum);
   return (
     <div style={style}>
       <EmptyCard>
