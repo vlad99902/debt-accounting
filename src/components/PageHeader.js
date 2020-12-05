@@ -1,5 +1,6 @@
 import React from 'react';
 import { observer } from 'mobx-react-lite'
+import NumberFormat from 'react-number-format';
 
 import '../styles/PageHeader.sass';
 
@@ -24,19 +25,19 @@ export const PageHeader = observer(({ mb = '0px', }) => {
         <nav className="page-header">
           <div className="page-header__logo">
             <NavLink to="/home">
-              <Header fw="600">DEBT ACC</Header>
+              <Header fw="600">DEBT A₽₽</Header>
             </NavLink>
           </div>
           <div className="page-header__navigation">
             <div className="page-header__nav-el page-header__balance">
               <NavLink to="/home" activeClassName='active'>
 
-                Balance: <span className={stl.join('')}>{debt.allTotal}</span>
+                Balance: <span className={stl.join('')}><NumberFormat value={debt.allTotal} displayType={'text'} thousandSeparator={true} prefix={'$'} /></span>
 
               </NavLink>
             </div>
             <div className="page-header__nav-el page-header__user">
-              <NavLink to="/settings" activeClassName='active'>userName@gmail.com</NavLink>
+              <NavLink to="/settings" activeClassName='active'>kirill@yandex.com</NavLink>
             </div>
             <div className="page-header__nav-el page-header__logout">
               <a href="/home" onClick={() => debt.logout()}>
