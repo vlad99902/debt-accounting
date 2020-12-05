@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import NumberFormat from 'react-number-format';
 
 import { observer } from 'mobx-react-lite';
 import debt from '../store/Debt';
@@ -13,6 +14,7 @@ import { Total } from '../components/Total';
 import { Card } from '../components/Card';
 import { Header } from '../components/Header';
 import { EmptyCard } from '../components/EmptyCard';
+import { values } from 'mobx';
 
 export const AddCard = observer(({ mt = "16px" }) => {
 
@@ -21,7 +23,7 @@ export const AddCard = observer(({ mt = "16px" }) => {
   };
 
   const [title, setTitle] = useState('');
-  const [sum, setSum] = useState(0);
+  const [sum, setSum] = useState();
 
   const clearInput = (stateFunc) => {
     stateFunc('');
@@ -39,6 +41,7 @@ export const AddCard = observer(({ mt = "16px" }) => {
     clearInput(setTitle);
     clearInput(setSum);
   };
+  console.log(sum);
   return (
     <div style={style}>
       <EmptyCard>
@@ -54,14 +57,22 @@ export const AddCard = observer(({ mt = "16px" }) => {
               value={title}
               onChange={(event) => setTitle(event.target.value)}
             />
-            <input
-              className="input add-card__input"
-              type="number"
+            <NumberFormat
+              thousandSeparator={true}
+              prefix={'$'}
+              className="add-card__input input"
               id="sum"
               name="sum"
-              placeholder="Sum"
+              inputMode="numeric"
               value={sum}
-              onChange={(event) => setSum(event.target.value)}
+              placeholder="$0"
+              allowNegative={false}
+              decimalScale={2}
+              onValueChange={(values) => {
+                const { floatValue } = values
+                setSum(floatValue)
+              }
+              }
             />
           </div>
           <div className="add-card__buttons">
