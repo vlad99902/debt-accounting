@@ -60,12 +60,15 @@ export const AuthPage = observer(() => {
           placeholder="Password"
           onChange={changeHandler}
         />
-        <Button mr="12px" onClick={loginHandler} disabled={debt.loading}>
-          Log In
-        </Button>
-        <Button onClick={registerHandler} disabled={debt.loading}>
-          Register
-        </Button>
+        <div className="auth-page__buttons">
+          <Button onClick={loginHandler} disabled={debt.loading}>
+            Log In
+          </Button>
+          <Button onClick={registerHandler} disabled={debt.loading}>
+            Register
+          </Button>
+        </div>
+
       </EmptyCard>
       <Button onClick={() => setIsOpen(true)}>Open modal</Button>
       <Modal

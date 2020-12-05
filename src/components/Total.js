@@ -1,5 +1,6 @@
 import React from 'react';
 import { observer } from 'mobx-react-lite';
+import NumberFormat from 'react-number-format';
 
 // styles
 import '../styles/Total.sass';
@@ -19,7 +20,7 @@ export const Total = observer(
             marginBottom: mb,
           }}
         >
-          {children}<span className="total__sum">{total}</span>
+          {children}<span className="total__sum"><NumberFormat value={total} displayType={'text'} thousandSeparator={true} prefix={'$'} /></span>
         </h1>
       </>
     );
