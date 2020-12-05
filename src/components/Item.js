@@ -22,7 +22,7 @@ export const Item = observer((props) => {
     await debt.deleteItem(props._id);
   };
 
-  const submitForm = () => {
+  const submitForm = async () => {
     setInput({ title: false, sum: false });
     if (form.title === '') {
       setForm({ ...form, title: 'Title' });
@@ -30,6 +30,7 @@ export const Item = observer((props) => {
     if (!form.sum) {
       setForm({ ...form, sum: 0 });
     }
+    await debt.updateItem({ _id: props._id, ...form });
   };
 
   const cancelSubmitingForm = () => {

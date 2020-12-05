@@ -21,7 +21,7 @@ export default async function request(url, method = 'GET', token, data = null) {
       throw new Error(data.message || 'Something wrong in fetch');
     }
 
-    if (method !== 'DELETE') return await response.json();
+    if (method !== 'DELETE' && method !== 'PUT') return await response.json();
   } catch (error) {
     throw new Error(error.message);
   }
