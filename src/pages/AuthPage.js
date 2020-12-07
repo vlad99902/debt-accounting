@@ -32,20 +32,21 @@ export const AuthPage = observer(() => {
     pauseOnFocusLoss: false,
     pauseOnHover: false
   })
+  
+  const registerHandler = async () => {
 
-  const registerHandler = () => {
     try {
-      debt.register({ ...form });
+      await debt.register({ ...form });
     } catch (e) {
-      console.log(e);
+      console.log(e.message);
     }
   };
 
-  const loginHandler = () => {
+  const loginHandler = async () => {
     try {
-      debt.login({ ...form });
+      await debt.login({ ...form });
     } catch (e) {
-      console.log(e);
+      console.log(e.message);
     }
   };
 
