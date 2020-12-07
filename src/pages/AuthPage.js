@@ -29,11 +29,11 @@ export const AuthPage = observer(() => {
     }
   };
 
-  const loginHandler = () => {
+  const loginHandler = async () => {
     try {
-      debt.login({ ...form });
+      await debt.login({ ...form });
     } catch (e) {
-      console.log(e);
+      console.log(e.message);
     }
   };
 

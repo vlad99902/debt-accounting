@@ -65,7 +65,7 @@ class Debt {
       //TODO Fetch needed info
       this.getAllDebts();
     } catch (error) {
-      console.log(error);
+      throw new Error(error.message);
     } finally {
       this.setLoading(false);
     }
