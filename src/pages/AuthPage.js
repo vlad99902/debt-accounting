@@ -21,11 +21,11 @@ export const AuthPage = observer(() => {
     setForm({ ...form, [event.target.name]: event.target.value });
   };
 
-  const registerHandler = () => {
+  const registerHandler = async () => {
     try {
-      debt.register({ ...form });
+      await debt.register({ ...form });
     } catch (e) {
-      console.log(e);
+      console.log(e.message);
     }
   };
 
