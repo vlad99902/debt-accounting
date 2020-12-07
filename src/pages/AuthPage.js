@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { observer } from 'mobx-react-lite';
 import debt from '../store/Debt';
+import { ToastContainer, toast } from 'react-toastify';
 
+import 'react-toastify/dist/ReactToastify.css';
 import '../styles/Input.sass';
 import '../styles/AuthPage.sass';
+
 
 import { Header } from '../components/Header';
 import { EmptyCard } from '../components/EmptyCard';
@@ -21,7 +24,17 @@ export const AuthPage = observer(() => {
     setForm({ ...form, [event.target.name]: event.target.value });
   };
 
+  const notify = () => toast(
+    "Fuck you!", {
+    position: "bottom-right",
+    autoClose: 4000,
+    draggable: true,
+    pauseOnFocusLoss: false,
+    pauseOnHover: false
+  })
+  
   const registerHandler = async () => {
+
     try {
       await debt.register({ ...form });
     } catch (e) {
@@ -69,15 +82,18 @@ export const AuthPage = observer(() => {
           </Button>
         </div>
       </EmptyCard>
-      <Button onClick={() => setIsOpen(true)}>Open modal</Button>
-      <Modal
+      <Button onClick={() => notify()}>Notify!</Button>
+      <ToastContainer limit={2} />
+
+      {/* <Button onClick={() => setIsOpen(true)}>Open modal</Button> */}
+      {/* <Modal
         isOpen={isOpen}
         onClose={() => {
           setIsOpen(false);
         }}
       >
         This is modal
-      </Modal>
+      </Modal> */}
     </div>
   );
 });
