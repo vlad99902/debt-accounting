@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { observer } from 'mobx-react-lite';
 import { TiDeleteOutline } from 'react-icons/ti';
+import notify from '../functions/notify';
 
 import '../styles/Item.sass';
 
@@ -16,6 +17,10 @@ export const Item = observer((props) => {
 
   const clearItem = () => {
     debt.deleteItem(props._id);
+    cancelSubmitingForm()
+    console.log(form);
+
+
   };
 
   const changeCompleted = (event) => {
@@ -23,10 +28,10 @@ export const Item = observer((props) => {
     debt.updateItem({ _id: props._id, completed: event.target.checked });
   };
 
-  // const cancelSubmitingForm = () => {
-  //   setInput({ title: false, sum: false });
-  //   setForm({ title: props.title, sum: props.sum });
-  // };
+  const cancelSubmitingForm = () => {
+    setInput({ title: false, sum: false });
+    setForm({ title: props.title, sum: props.sum });
+  };
 
   const handlerKeyPress = (event) => {
     if (event.key === 'Enter') {
@@ -107,8 +112,8 @@ export const Item = observer((props) => {
             onBlur={() => submitForm()}
           />
         ) : (
-          <h1 className="item__changed-title">{form.title}</h1>
-        )}
+            <h1 className="item__changed-title">{form.title}</h1>
+          )}
       </button>
 
       <button
@@ -130,8 +135,8 @@ export const Item = observer((props) => {
             onBlur={() => submitForm()}
           />
         ) : (
-          <h3 className="item__sum">{form.sum}</h3>
-        )}
+            <h3 className="item__sum">{form.sum}</h3>
+          )}
       </button>
 
       <button className="item__button">

@@ -3,6 +3,7 @@ import NumberFormat from 'react-number-format';
 
 import { observer } from 'mobx-react-lite';
 import debt from '../store/Debt';
+import notify from '../functions/notify';
 
 //styles
 import '../styles/Input.sass';
@@ -12,6 +13,7 @@ import '../styles/AddCard.sass';
 import { Button } from '../components/Button';
 import { Header } from '../components/Header';
 import { EmptyCard } from '../components/EmptyCard';
+
 
 export const AddCard = observer(({ mt = '16px' }) => {
   const style = {
@@ -25,17 +27,20 @@ export const AddCard = observer(({ mt = '16px' }) => {
     stateFunc('');
   };
 
-  const onClickAdd = (owe = true) => {
+  const onClickAdd = async (owe = true) => {
     //TODO изменить добавление (добавлять тип в локальный стор правильно)
-
-    debt.add({
-      title: title.trim() || 'Title',
-      sum: +sum || 0,
-      completed: false,
-      owe,
-    });
-    clearInput(setTitle);
-    clearInput(setSum);
+    try {
+      await debt.add({
+        title: title.trim() || 'Title',
+        sum: +sum || 0,
+        completed: false,
+        owe,
+      });
+      clearInput(setTitle);
+      clearInput(setSum);
+    } catch (e) {
+      notify(e.message)
+    }
   };
   return (
     <div style={style}>
