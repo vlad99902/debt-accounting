@@ -20,7 +20,7 @@ export const MainPage = observer(() => {
       <div className="container">
         <AddCard mb="32px" />
         <div className="lists">
-          <div className="lists__left">
+          <div className="lists__inner">
             <div className="lists__header">
               <Header ta="left">Debts</Header>
               <Total total={debt.oweTotal} />
@@ -30,7 +30,7 @@ export const MainPage = observer(() => {
             </div>
           </div>
 
-          <div className="lists__right">
+          <div className="lists__inner">
             <div className="lists__header">
               <Header ta="left">Debtors</Header>
               <Total total={debt.shouldTotal} />
@@ -40,7 +40,6 @@ export const MainPage = observer(() => {
             </div>
           </div>
         </div>
-
       </div>
       <ToastContainer limit={2} />
     </>
