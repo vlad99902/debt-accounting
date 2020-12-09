@@ -22,7 +22,7 @@ a
   color: $korica
 
 .container
-  max-width: 1250px
+  max-width: 1200px
   padding: 0 15px
   margin: 0 auto
 
@@ -46,3 +46,17 @@ input::-webkit-inner-spin-button
 
 .Toastify__progress-bar
   background: $karamel
+
+@media ( max-width: 1200px)
+  .container
+    max-width: 970px
+  .lists
+    justify-content: center
+
+@media ( max-width: 992px)
+  .container
+    max-width: 750px
+
+@media ( max-width: 768px)
+  .container
+    max-width: none
