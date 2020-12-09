@@ -15,9 +15,10 @@ import { Header } from '../components/Header';
 import { EmptyCard } from '../components/EmptyCard';
 
 
-export const AddCard = observer(({ mt = '16px' }) => {
+export const AddCard = observer(({ mt = '0px', mb = '0px' }) => {
   const style = {
     marginTop: mt,
+    marginBottom: mb,
   };
 
   const [title, setTitle] = useState('');
@@ -68,7 +69,6 @@ export const AddCard = observer(({ mt = '16px' }) => {
               placeholder="$0"
               allowNegative={false}
               decimalScale={2}
-              fixedDecimalScale={true}
               onValueChange={(values) => {
                 const { floatValue } = values;
                 setSum(floatValue);
