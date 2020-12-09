@@ -11,6 +11,9 @@ export const Item = observer((props) => {
   const [input, setInput] = useState({ title: false, sum: false });
   const [completed, setCompleted] = useState(props.completed);
 
+  let stl = ''
+  if (completed) stl = 'checked'
+
   const [form, setForm] = useState({
     title: props.title,
     sum: props.sum,
@@ -115,7 +118,7 @@ export const Item = observer((props) => {
             onBlur={() => submitForm()}
           />
         ) : (
-            <h1 className="item__changed-title">{form.title}</h1>
+            <h1 className={"item__changed-title " + stl}>{form.title}</h1>
           )}
       </button>
 
@@ -131,7 +134,7 @@ export const Item = observer((props) => {
             <NumberFormat
               thousandSeparator={true}
               prefix={'$'}
-              className="item__changed-input input"
+              className="item__changed-input"
               id="sum"
               name="sum"
               inputMode="numeric"
@@ -148,7 +151,7 @@ export const Item = observer((props) => {
             /></div></>
 
         ) : (
-            <h3 className="item__sum"><NumberFormat value={form.sum} displayType={'text'} thousandSeparator={true} prefix={'$'} /></h3>
+            <h3 className={"item__sum " + stl}><NumberFormat value={form.sum} displayType={'text'} thousandSeparator={true} prefix={'$'} /></h3>
           )}
       </button>
 
