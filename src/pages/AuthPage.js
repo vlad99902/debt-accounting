@@ -23,6 +23,7 @@ export const AuthPage = observer(() => {
     try {
       await debt.register({ ...form });
     } catch (e) {
+      console.log(e.message);
       notify(e.message);
     }
   };

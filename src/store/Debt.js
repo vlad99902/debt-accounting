@@ -107,6 +107,7 @@ class Debt {
       this.setIsAuth(true);
       //TODO Fetch needed info
     } catch (error) {
+      console.log(error.message);
       throw new Error(error.message);
     } finally {
       this.setLoading(false);
