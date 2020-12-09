@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { observer } from 'mobx-react-lite';
 import { TiDeleteOutline } from 'react-icons/ti';
 import notify from '../functions/notify';
+import NumberFormat from 'react-number-format';
 
 import '../styles/Item.sass';
 
@@ -77,8 +78,12 @@ export const Item = observer((props) => {
     }
   };
 
-  const changeHandler = (event) => {
-    setForm({ ...form, [event.target.name]: event.target.value });
+  // const changeHandlerValue = (event) => {
+  //   setForm({ ...form, [event.target.name]: event.target.value });
+  // };
+
+  const changeHandler = (name, value) => {
+    setForm({ ...form, [name]: value });
   };
 
   return (
@@ -105,13 +110,13 @@ export const Item = observer((props) => {
             className="item__changed-input"
             placeholder="Title"
             value={form.title}
-            onChange={changeHandler}
+            onChange={(e) => changeHandler('title', e.target.value)}
             autoFocus
             onBlur={() => submitForm()}
           />
         ) : (
-          <h1 className="item__changed-title">{form.title}</h1>
-        )}
+            <h1 className="item__changed-title">{form.title}</h1>
+          )}
       </button>
 
       <button
@@ -120,21 +125,31 @@ export const Item = observer((props) => {
         className="item__sum"
         name="sum"
       >
-        {input.sum ? (
-          <input
-            type="number"
-            id="sum"
-            name="sum"
-            className="item__changed-input"
-            placeholder="0"
-            value={form.sum}
-            onChange={changeHandler}
-            autoFocus
-            onBlur={() => submitForm()}
-          />
+        {input.sum ? (<>
+          <div name="sum">
+
+            <NumberFormat
+              thousandSeparator={true}
+              prefix={'$'}
+              className="item__changed-input input"
+              id="sum"
+              name="sum"
+              inputMode="numeric"
+              value={form.sum}
+              placeholder="$0"
+              allowNegative={false}
+              decimalScale={2}
+              autoFocus
+              onBlur={() => submitForm()}
+              onValueChange={(values) => {
+                const { floatValue } = values;
+                changeHandler('sum', floatValue);
+              }}
+            /></div></>
+
         ) : (
-          <h3 className="item__sum">{form.sum}</h3>
-        )}
+            <h3 className="item__sum"><NumberFormat value={form.sum} displayType={'text'} thousandSeparator={true} prefix={'$'} /></h3>
+          )}
       </button>
 
       <button className="item__button">

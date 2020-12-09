@@ -69,7 +69,6 @@ export const AddCard = observer(({ mt = '0px', mb = '0px' }) => {
               placeholder="$0"
               allowNegative={false}
               decimalScale={2}
-              fixedDecimalScale={true}
               onValueChange={(values) => {
                 const { floatValue } = values;
                 setSum(floatValue);

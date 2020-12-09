@@ -24,10 +24,14 @@
       transition: 0.5s
       color: transparent
   &:hover
-
     transform: scale(1.05)
     cursor: pointer
   &:focus
-    // transition-duration: 0.5s
     transform: scale(1.05)
-    // cursor: pointer
+
+@media ( max-width: 767px)
+  .input
+    &:hover
+      transform: none
+    &:focus
+      transform: none
