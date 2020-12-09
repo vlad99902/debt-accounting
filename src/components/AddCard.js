@@ -15,9 +15,10 @@ import { Header } from '../components/Header';
 import { EmptyCard } from '../components/EmptyCard';
 
 
-export const AddCard = observer(({ mt = '16px' }) => {
+export const AddCard = observer(({ mt = '0px', mb = '0px' }) => {
   const style = {
     marginTop: mt,
+    marginBottom: mb,
   };
 
   const [title, setTitle] = useState('');

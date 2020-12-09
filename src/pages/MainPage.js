@@ -18,6 +18,7 @@ export const MainPage = observer(() => {
   return (
     <>
       <div className="container">
+        <AddCard mb="32px" />
         <div className="lists">
           <div className="lists__left">
             <div className="lists__header">
@@ -39,7 +40,7 @@ export const MainPage = observer(() => {
             </div>
           </div>
         </div>
-        <AddCard mt="32px" />
+
       </div>
       <ToastContainer limit={2} />
     </>
