@@ -2,6 +2,7 @@ import React from 'react';
 
 import { observer } from 'mobx-react-lite';
 import debt from '../store/Debt';
+import { ToastContainer } from 'react-toastify';
 
 //styles
 import '../styles/Input.sass';
@@ -40,6 +41,7 @@ export const MainPage = observer(() => {
         </div>
         <AddCard mt="32px" />
       </div>
+      <ToastContainer limit={2} />
     </>
   );
 });

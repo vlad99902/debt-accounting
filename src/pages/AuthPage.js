@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { observer } from 'mobx-react-lite';
 import debt from '../store/Debt';
 import { ToastContainer } from 'react-toastify';
@@ -7,30 +7,23 @@ import 'react-toastify/dist/ReactToastify.css';
 import '../styles/Input.sass';
 import '../styles/AuthPage.sass';
 
-
 import { Header } from '../components/Header';
 import { EmptyCard } from '../components/EmptyCard';
 import { Button } from '../components/Button';
-import { Modal } from '../components/Modal';
 import notify from '../functions/notify';
 
 export const AuthPage = observer(() => {
   const [form, setForm] = useState({ email: '', password: '' });
-
-  const [isOpen, setIsOpen] = useState(false);
-  //обработка ошибок, которые прилетели с сервера
-  // useEffect(() => {}, [error]);
 
   const changeHandler = (event) => {
     setForm({ ...form, [event.target.name]: event.target.value });
   };
 
   const registerHandler = async () => {
-
     try {
       await debt.register({ ...form });
     } catch (e) {
-      notify(e.message)
+      notify(e.message);
     }
   };
 
@@ -38,7 +31,7 @@ export const AuthPage = observer(() => {
     try {
       await debt.login({ ...form });
     } catch (e) {
-      notify(e.message)
+      notify(e.message);
     }
   };
 
@@ -74,18 +67,7 @@ export const AuthPage = observer(() => {
           </Button>
         </div>
       </EmptyCard>
-      <Button onClick={() => notify()}>Notify!</Button>
       <ToastContainer limit={2} />
-
-      {/* <Button onClick={() => setIsOpen(true)}>Open modal</Button> */}
-      {/* <Modal
-        isOpen={isOpen}
-        onClose={() => {
-          setIsOpen(false);
-        }}
-      >
-        This is modal
-      </Modal> */}
     </div>
   );
 });

@@ -65,7 +65,7 @@ class Debt {
       //TODO Fetch needed info
       this.getAllDebts();
     } catch (error) {
-      throw new Error(error.message)
+      throw new Error(error.message);
     } finally {
       this.setLoading(false);
     }
@@ -97,7 +97,7 @@ class Debt {
       this.setIsAuth(true);
       //TODO Fetch needed info
     } catch (error) {
-      throw new Error(error.message)
+      throw new Error(error.message);
     } finally {
       this.setLoading(false);
     }
@@ -113,7 +113,7 @@ class Debt {
       const debts = yield request('/api/debt', 'GET', this.token);
       this.setStore(debts);
     } catch (error) {
-      throw new Error(error.message)
+      throw new Error(error.message);
     } finally {
       this.setLoading(false);
     }
@@ -136,7 +136,7 @@ class Debt {
       store.push({ _id: debtId, ...item });
       this.setStore(store);
     } catch (e) {
-      throw new Error(e.message)
+      throw new Error(e.message);
       // console.log('mistake here', e);
     }
   }
@@ -151,15 +151,13 @@ class Debt {
       yield request(`/api/debt/:${id}`, 'DELETE', this.token, {
         _id: id,
       });
-
       let store = this.store;
       store = store.filter((el) => {
         return el._id !== id;
       });
       this.setStore(store);
     } catch (e) {
-      // throw new Error(e.message)
-      console.log('mistake here', e);
+      throw new Error(e.message);
     }
   }
 
@@ -178,8 +176,7 @@ class Debt {
       });
       this.setStore(store);
     } catch (e) {
-      throw new Error(e.message)
-      // console.log('mistake here', e);
+      throw new Error(e.message);
     }
   }
 

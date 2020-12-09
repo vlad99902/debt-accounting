@@ -15,32 +15,30 @@ export const Item = observer((props) => {
     sum: props.sum,
   });
 
-  const clearItem = () => {
-    debt.deleteItem(props._id);
-    cancelSubmitingForm()
-    console.log(form);
-
-
+  const clearItem = async () => {
+    try {
+      await debt.deleteItem(props._id);
+    } catch (e) {
+      notify(e.message);
+    }
   };
 
-  const changeCompleted = (event) => {
-    setCompleted(event.target.checked);
-    debt.updateItem({ _id: props._id, completed: event.target.checked });
-  };
-
-  const cancelSubmitingForm = () => {
-    setInput({ title: false, sum: false });
-    setForm({ title: props.title, sum: props.sum });
+  const changeCompleted = async (event) => {
+    try {
+      setCompleted(event.target.checked);
+      await debt.updateItem({
+        _id: props._id,
+        completed: event.target.checked,
+      });
+    } catch (e) {
+      notify(e.message);
+    }
   };
 
   const handlerKeyPress = (event) => {
     if (event.key === 'Enter') {
       submitForm();
     }
-    // if (event.keyCode === 27) {
-    //   console.log('escape pressed');
-    //   cancelSubmitingForm();
-    // }
   };
 
   const handleDoubleClick = (event) => {
@@ -52,7 +50,7 @@ export const Item = observer((props) => {
     }
   };
 
-  const submitForm = () => {
+  const submitForm = async () => {
     setInput({ title: false, sum: false });
     checkFormValues();
     let objectToSend = {
@@ -60,13 +58,13 @@ export const Item = observer((props) => {
       title: form.title || 'Title',
       sum: +form.sum || 0,
     };
-    // for (let key in form) {
-    //   if (form[key] !== props[key]) {
-    //     objectToSend = { ...objectToSend, [key]: form[key] };
-    //   }
-    // }
-    if (Object.keys(objectToSend).length !== 0) {
-      debt.updateItem({ _id: props._id, ...objectToSend });
+
+    try {
+      if (Object.keys(objectToSend).length !== 0) {
+        await debt.updateItem({ _id: props._id, ...objectToSend });
+      }
+    } catch (e) {
+      notify(e.message);
     }
   };
 
@@ -112,8 +110,8 @@ export const Item = observer((props) => {
             onBlur={() => submitForm()}
           />
         ) : (
-            <h1 className="item__changed-title">{form.title}</h1>
-          )}
+          <h1 className="item__changed-title">{form.title}</h1>
+        )}
       </button>
 
       <button
@@ -135,8 +133,8 @@ export const Item = observer((props) => {
             onBlur={() => submitForm()}
           />
         ) : (
-            <h3 className="item__sum">{form.sum}</h3>
-          )}
+          <h3 className="item__sum">{form.sum}</h3>
+        )}
       </button>
 
       <button className="item__button">

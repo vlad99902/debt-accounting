@@ -17,13 +17,13 @@ export default async function request(url, method = 'GET', token, data = null) {
       body,
     });
 
-    const res = await response.json();
-
     if (!response.ok) {
-      throw new Error(res.message || 'Some server error!');
+      throw new Error(response.message || 'Some server error!');
     }
 
-    if (method !== 'DELETE' && method !== 'PUT') return res;
+    const res = await response;
+
+    if (method !== 'DELETE' && method !== 'PUT') return res.json();
   } catch (error) {
     throw new Error(error.message);
   }
