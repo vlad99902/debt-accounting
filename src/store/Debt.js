@@ -4,8 +4,8 @@ import request from '../functions/request';
 import { ObjectID } from 'mongodb';
 
 class Debt {
+  serverUrl = '';
   store = [];
-
   isAuth = false;
   email = '';
   token = '';
@@ -45,10 +45,15 @@ class Debt {
   *login({ email, password }) {
     this.setLoading(true);
     try {
-      const data = yield request('/api/auth/login', 'POST', '', {
-        email,
-        password,
-      });
+      const data = yield request(
+        `${this.serverUrl}/api/auth/login`,
+        'POST',
+        '',
+        {
+          email,
+          password,
+        },
+      );
       this.setEmail(email);
       this.setUserId(data.userId);
       this.setToken(data.token);
@@ -79,10 +84,15 @@ class Debt {
   *register({ email, password }) {
     this.setLoading(true);
     try {
-      const data = yield request('/api/auth/register', 'POST', '', {
-        email,
-        password,
-      });
+      const data = yield request(
+        `${this.serverUrl}/api/auth/register`,
+        'POST',
+        '',
+        {
+          email,
+          password,
+        },
+      );
       this.setEmail(email);
       this.setUserId(data.userId);
       this.setToken(data.token);
@@ -110,7 +120,11 @@ class Debt {
   *getAllDebts() {
     this.setLoading(true);
     try {
-      const debts = yield request('/api/debt', 'GET', this.token);
+      const debts = yield request(
+        `${this.serverUrl}/api/debt`,
+        'GET',
+        this.token,
+      );
       this.setStore(debts);
     } catch (error) {
       throw new Error(error.message);
@@ -128,7 +142,7 @@ class Debt {
       const debtId = new ObjectID().toString();
 
       const dataToSend = { _id: new ObjectID(debtId), ...item };
-      yield request('/api/debt/add', 'POST', this.token, {
+      yield request(`${this.serverUrl}/api/debt/add`, 'POST', this.token, {
         dataToSend,
       });
 
@@ -148,7 +162,7 @@ class Debt {
 
   *deleteItem(id) {
     try {
-      yield request(`/api/debt/:${id}`, 'DELETE', this.token, {
+      yield request(`${this.serverUrl}/api/debt/:${id}`, 'DELETE', this.token, {
         _id: id,
       });
       let store = this.store;
@@ -163,9 +177,14 @@ class Debt {
 
   *updateItem(item) {
     try {
-      yield request(`/api/debt/:${item._id}`, 'PUT', this.token, {
-        item,
-      });
+      yield request(
+        `${this.serverUrl}/api/debt/:${item._id}`,
+        'PUT',
+        this.token,
+        {
+          item,
+        },
+      );
 
       let store = this.store;
       store = store.map((el) => {
