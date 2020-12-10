@@ -8,15 +8,15 @@ import debt from '../store/Debt';
 import { NavLink } from 'react-router-dom';
 import { Header } from './Header';
 
-export const PageHeader = observer(({ mb = '0px' }) => {
+export const PageHeader = observer(() => {
   const stl = [''];
   debt.allTotal < 0 ? stl.push('exc-red') : stl.push('exc-green');
 
   let userName = debt.email.split('@').shift();
 
   return (
-    <div className="wrapper" style={{ marginBottom: mb }}>
-      <div className="container">
+    <div className="wrapper">
+      <div className="container container--without-top-bottom">
         <nav className="page-header">
           <div className="page-header__logo">
             <NavLink to="/home">

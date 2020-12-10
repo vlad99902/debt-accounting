@@ -17,7 +17,7 @@ import { AddCard } from '../components/AddCard';
 export const MainPage = observer(() => {
   return (
     <>
-      <div className="container">
+      <div className="container container--padding-vertical">
         <AddCard mb="32px" />
         <div className="lists">
           <div className="lists__inner">

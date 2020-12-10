@@ -4,7 +4,7 @@ import { TiDeleteOutline } from 'react-icons/ti';
 import notify from '../functions/notify';
 import NumberFormat from 'react-number-format';
 
-import '../styles/Item.sass';
+import '../styles/ItemTest.sass';
 
 import debt from '../store/Debt';
 export const Item = observer((props) => {
@@ -85,7 +85,7 @@ export const Item = observer((props) => {
   //   setForm({ ...form, [event.target.name]: event.target.value });
   // };
 
-  const changeHandler = (name, value) => {
+  const changeHandler = (name = 'Title', value = 0) => {
     setForm({ ...form, [name]: value });
   };
 
@@ -134,7 +134,7 @@ export const Item = observer((props) => {
             <NumberFormat
               thousandSeparator={true}
               prefix={'$'}
-              className="item__changed-input"
+              className="item__changed-input small"
               id="sum"
               name="sum"
               inputMode="numeric"
@@ -151,7 +151,7 @@ export const Item = observer((props) => {
             /></div></>
 
         ) : (
-            <h3 className={"item__sum " + stl}><NumberFormat value={form.sum} displayType={'text'} thousandSeparator={true} prefix={'$'} /></h3>
+            <h3 className={"item__changed-sum " + stl}><NumberFormat value={form.sum} displayType={'text'} thousandSeparator={true} prefix={'$'} /></h3>
           )}
       </button>
 
