@@ -70,9 +70,9 @@ export const AuthPage = observer(() => {
               </Button>
             </div>
           </EmptyCard>
-          <ToastContainer limit={2} />
         </div>
       </div>
+      <ToastContainer limit={2} />
     </div>
   );
 });
