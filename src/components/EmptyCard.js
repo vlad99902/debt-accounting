@@ -9,7 +9,7 @@ export const EmptyCard = ({ children, position = 'center' }) => {
   } else if (position === 'right') style = { marginLeft: 'auto' };
   return (
     <>
-      <div className="card card--without-border" style={style}>
+      <div className="card card--with-width" style={style}>
         {children}
       </div>
     </>

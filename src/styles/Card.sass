@@ -4,17 +4,12 @@
 .card
   border: 1px solid $perec
   border-radius: 16px
-  padding: 16px 26px
-  max-width: 500px
-  min-width: 500px
+  padding: 16px 16px
   max-height: 358px
   overflow: auto
 
-  &--without-border
-    @media ( max-width: 630px )
-      // border: none
-      max-width: 500px
-      min-width: 0
+  &--with-width
+    max-width: 500px
 
   &__item
     margin-bottom: 12px
