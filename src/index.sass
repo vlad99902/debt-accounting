@@ -20,8 +20,11 @@ body
 
 .container
   max-width: 1200px
-  padding: 0 15px 15px 15px
+  padding: 0px 16px
   margin: 0 auto
+
+  &--padding-vertical
+    padding: 32px 16px
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button
@@ -55,3 +58,5 @@ input::-webkit-inner-spin-button
 @media ( max-width: 767px)
   .container
     max-width: none
+    &--padding-vertical
+      padding: 16px
