@@ -16,7 +16,7 @@ export const PageHeader = observer(({ mb = '0px' }) => {
 
   return (
     <div className="wrapper" style={{ marginBottom: mb }}>
-      <div className="container">
+      <div className="container cont-this">
         <nav className="page-header">
           <div className="page-header__logo">
             <NavLink to="/home">
