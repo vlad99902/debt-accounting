@@ -5,7 +5,7 @@
 	background-color: $karamel
 	position: sticky
 	top: 0px
-	z-index: 10000
+	z-index: 100
 
 .page-header
 	display: flex
@@ -75,10 +75,11 @@
 			margin-right: 0px
 
 @media ( min-width: 767px )
-	&__nav-el
-		&:hover
-			transform: translate(3px)
-			cursor: pointer
+	.page-header
+		&__nav-el
+			&:hover
+				transform: translate(3px)
+				cursor: pointer
 
 .exc-red
 	color: $red

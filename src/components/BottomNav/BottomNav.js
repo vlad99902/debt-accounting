@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { NavLink } from "react-router-dom";
 import { Modal } from "../Modal";
@@ -8,8 +8,10 @@ import "./BottomNav.sass";
 import homeIMG from "../../assets/home.png";
 import plusIMG from "../../assets/plus.png";
 import settingsIMG from "../../assets/settings.png";
+import { AddCard } from "../AddCard";
 
 export const BottomNav = observer(() => {
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="wrapper-bottom">
       <nav className="bottom-nav">
@@ -20,7 +22,11 @@ export const BottomNav = observer(() => {
             </div>
           </div>
         </NavLink>
-        <NavLink to="/home" activeClassName="null" onClick>
+        <NavLink
+          to="/home"
+          activeClassName="null"
+          onClick={() => setIsOpen(true)}
+        >
           <div className="bottom-nav__inner">
             <div class="bottom-nav__add bottom-nav__icon">
               <img src={plusIMG} alt="" />
@@ -35,6 +41,14 @@ export const BottomNav = observer(() => {
           </div>
         </NavLink>
       </nav>
+      <Modal
+        isOpen={isOpen}
+        onClose={() => {
+          setIsOpen(false);
+        }}
+      >
+        <AddCard mb="32px" />
+      </Modal>
     </div>
   );
 });
