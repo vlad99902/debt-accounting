@@ -93,6 +93,16 @@
 .exc-green
 	color: $green
 
+@media ( max-width: 767px)
+	.page-header
+		&__user
+			display: none
+		&__logout
+			display: none
+		&__balance
+			margin: 0
+		&__navigation
+			justify-content: flex-end
 // animations
 
 @keyframes arrow
@@ -104,14 +114,3 @@
 @keyframes rotate
 	100%
 		transform: rotate(1turn)
-
-@media ( max-width: 767px)
-	.page-header
-		&__user
-			display: none
-		&__logout
-			display: none
-		&__balance
-			margin: 0
-		&__navigation
-			justify-content: flex-end

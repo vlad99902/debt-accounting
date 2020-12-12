@@ -1,18 +1,26 @@
-import React from 'react';
+import React from "react";
 
 // Styles
-import '../styles/Button.sass';
+import "../styles/Button.sass";
 
 //components
 
 export const Button = ({
-  children = 'default',
-  type = 'should',
-  mr = '0px',
+  children = "default",
+  type = "should",
+  mr = "0px",
+  bw = "1px",
+  padding,
+  bg,
   onClick = () => {},
   disabled,
 }) => {
-  const style = { marginRight: mr };
+  const style = {
+    marginRight: mr,
+    borderWidth: bw,
+    padding: padding,
+    background: bg,
+  };
   const preventAction = (event) => {
     event.preventDefault();
     onClick();

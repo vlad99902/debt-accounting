@@ -1,18 +1,19 @@
-import React from 'react';
-import { observer } from 'mobx-react-lite';
-import NumberFormat from 'react-number-format';
+import React from "react";
+import { observer } from "mobx-react-lite";
+import NumberFormat from "react-number-format";
 
-import '../styles/PageHeader.sass';
+import "../styles/PageHeader.sass";
 
-import debt from '../store/Debt';
-import { NavLink } from 'react-router-dom';
-import { Header } from './Header';
+import debt from "../store/Debt";
+import { NavLink } from "react-router-dom";
+import { Header } from "./Header";
+import { Button } from "./Button";
 
 export const PageHeader = observer(() => {
-  const stl = [''];
-  debt.allTotal < 0 ? stl.push('exc-red') : stl.push('exc-green');
+  const stl = [""];
+  debt.allTotal < 0 ? stl.push("exc-red") : stl.push("exc-green");
 
-  let userName = debt.email.split('@').shift();
+  let userName = debt.email.split("@").shift();
 
   return (
     <div className="wrapper">
@@ -26,13 +27,13 @@ export const PageHeader = observer(() => {
           <div className="page-header__navigation">
             <div className="page-header__nav-el page-header__balance">
               <NavLink to="/home" activeClassName="active">
-                Balance:{' '}
-                <span className={stl.join('')}>
+                Balance:{" "}
+                <span className={stl.join("")}>
                   <NumberFormat
                     value={debt.allTotal}
-                    displayType={'text'}
+                    displayType={"text"}
                     thousandSeparator={true}
-                    prefix={'$'}
+                    prefix={"$"}
                   />
                 </span>
               </NavLink>

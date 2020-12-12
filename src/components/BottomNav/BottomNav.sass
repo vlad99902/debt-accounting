@@ -1,0 +1,39 @@
+@import "../../index.sass"
+
+.wrapper-bottom
+	display: none
+	width: 100%
+	background-color: $karamel
+	position: sticky
+	//margin-top: 100%
+	bottom: 0px
+	left: 0px
+	z-index: 10000
+
+@media ( max-width: 767px)
+	.wrapper-bottom
+		display: inline-block
+
+.bottom-nav
+	display: flex
+	align-items: center
+	justify-content: space-between
+	padding: 0px 45px
+
+	&__home
+
+	&__add
+
+	&__settings
+
+	&__icon
+		width: 34px
+		height: 34px
+
+	&__inner
+		display: flex
+		align-items: center
+		justify-content: center
+		width: 100px
+		height: 60px
+		background-color: #8d7243
