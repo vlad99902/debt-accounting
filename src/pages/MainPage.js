@@ -18,7 +18,7 @@ export const MainPage = observer(() => {
   return (
     <>
       <div className="container container--padding-vertical">
-        <AddCard mb="32px" />
+        <AddCard mb="32px"/>
         <div className="lists">
           <div className="lists__inner">
             <div className="lists__header">

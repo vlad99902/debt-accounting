@@ -15,10 +15,10 @@ import { Header } from '../components/Header';
 import { EmptyCard } from '../components/EmptyCard';
 
 
-export const AddCard = observer(({ mt = '0px', mb = '0px' }) => {
+export const AddCard = observer(({ mt = '0px', mb = '0px', display = 'block' }) => {
   const style = {
     marginTop: mt,
-    marginBottom: mb,
+		marginBottom: mb
   };
 
   const [title, setTitle] = useState('');
@@ -44,16 +44,16 @@ export const AddCard = observer(({ mt = '0px', mb = '0px' }) => {
     }
   };
   return (
-    <div style={style}>
+    <div style={style} className="add-card">
       <EmptyCard>
         <Header mb="16px">Add</Header>
-        <div className="add-card">
-          <div className="add-card__inputs">
+        <div className="add-card-inner">
+          <div className="add-card-inner__inputs">
             <input
               type="text"
               id="title"
               name="title"
-              className="input add-card__input"
+              className="input add-card-inner__input"
               placeholder="Title"
               value={title}
               onChange={(event) => setTitle(event.target.value)}
@@ -61,7 +61,7 @@ export const AddCard = observer(({ mt = '0px', mb = '0px' }) => {
             <NumberFormat
               thousandSeparator={true}
               prefix={'$'}
-              className="add-card__input input"
+              className="add-card-inner__input input"
               id="sum"
               name="sum"
               inputMode="numeric"
@@ -75,14 +75,14 @@ export const AddCard = observer(({ mt = '0px', mb = '0px' }) => {
               }}
             />
           </div>
-          <div className="add-card__buttons">
-            <div className="add-card__button">
+          <div className="add-card-inner__buttons">
+            <div className="add-card-inner__button">
               <Button text="Add" onClick={() => onClickAdd(true)}>
                 Add debt
               </Button>
             </div>
 
-            <div className="add-card__button">
+            <div className="add-card-inner__button">
               <Button text="Add" onClick={() => onClickAdd(false)}>
                 Add deptor
               </Button>
