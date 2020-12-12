@@ -1,14 +1,14 @@
 @import "../index"
 
 .lists
-  display: flex
-  align-items: flex-start
-  justify-content: space-between
-  flex-wrap: wrap
+	display: flex
+	align-items: flex-start
+	justify-content: space-between
+	flex-wrap: wrap
 
   &__inner
     width: 500px
-
+  
     @media ( max-width: 1200px)
       margin-bottom: 32px
       margin-left: auto
@@ -16,29 +16,16 @@
       &:last-child
         margin-bottom: 0
 
-  &__header
-    display: flex
-    justify-content: space-between
-    align-items: center
+	&__header
+		display: flex
+		justify-content: space-between
+		align-items: center
 
-  &__card
+	&__card
 
-  &__buttons
-    display: flex
-    justify-content: space-between
-    margin-bottom: 22px
-  &__input
-    margin-right: 14px
-
-.add-card
-  display: flex
-  flex-direction: column
-
-  &__inputs
-    display: flex
-    flex-direction: column
-  &__buttons
-    display: flex
-    justify-content: space-evenly
-  &__input
-    margin-bottom: 16px
+	&__buttons
+		display: flex
+		justify-content: space-between
+		margin-bottom: 22px
+	&__input
+		margin-right: 14px
