@@ -26,7 +26,7 @@ export const PageHeader = observer(() => {
           </div>
           <div className="page-header__navigation">
             <div className="page-header__nav-el page-header__balance">
-              <NavLink to="/home" activeClassName="active">
+              <NavLink to="/home" activeClassName="active__page-header">
                 Balance:{" "}
                 <span className={stl.join("")}>
                   <NumberFormat

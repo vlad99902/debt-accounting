@@ -73,19 +73,12 @@
 		transition-duration: 0.5s
 		&:last-child
 			margin-right: 0px
+
+@media ( min-width: 767px )
+	&__nav-el
 		&:hover
 			transform: translate(3px)
 			cursor: pointer
-
-.active
-	position: relative
-  //font-weight: 700
-	&::before
-		position: absolute
-		content: ""
-		width: 70%
-		bottom: -4px
-		border-bottom: 2px solid $korica-strong
 
 .exc-red
 	color: $red
@@ -103,6 +96,17 @@
 			margin: 0
 		&__navigation
 			justify-content: flex-end
+
+@media ( min-width: 767px)
+	.active__page-header
+		position: relative
+  //font-weight: 700
+		&::before
+			position: absolute
+			content: ""
+			width: 70%
+			bottom: -4px
+			border-bottom: 2px solid $korica-strong
 // animations
 
 @keyframes arrow

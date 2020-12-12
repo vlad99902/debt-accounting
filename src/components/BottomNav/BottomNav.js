@@ -1,7 +1,7 @@
 import React from "react";
 
 import { NavLink } from "react-router-dom";
-import { Button } from "../Button";
+import { Modal } from "../Modal";
 import { observer } from "mobx-react-lite";
 
 import "./BottomNav.sass";
@@ -13,27 +13,27 @@ export const BottomNav = observer(() => {
   return (
     <div className="wrapper-bottom">
       <nav className="bottom-nav">
-        <div className="bottom-nav__inner">
-          <div class="bottom-nav__home bottom-nav__icon">
-            <NavLink to="/home">
+        <NavLink to="/home" activeClassName="active__bottom-nav">
+          <div className="bottom-nav__inner">
+            <div class="bottom-nav__home bottom-nav__icon">
               <img src={homeIMG} alt="" />
-            </NavLink>
+            </div>
           </div>
-        </div>
-        <div className="bottom-nav__inner">
-          <div class="bottom-nav__add bottom-nav__icon">
-            <Button bw="0px" padding="0 0" bg="none">
+        </NavLink>
+        <NavLink to="/home" activeClassName="null" onClick>
+          <div className="bottom-nav__inner">
+            <div class="bottom-nav__add bottom-nav__icon">
               <img src={plusIMG} alt="" />
-            </Button>
+            </div>
           </div>
-        </div>
-        <div className="bottom-nav__inner">
-          <div class="bottom-nav__settings bottom-nav__icon">
-            <NavLink to="/settings">
+        </NavLink>
+        <NavLink to="/settings" activeClassName="active__bottom-nav">
+          <div className="bottom-nav__inner">
+            <div class="bottom-nav__settings bottom-nav__icon">
               <img src={settingsIMG} alt="" />
-            </NavLink>
+            </div>
           </div>
-        </div>
+        </NavLink>
       </nav>
     </div>
   );
