@@ -20,9 +20,13 @@ export default observer(function App() {
 
   return (
     <BrowserRouter>
-      {debt.isAuth && <PageHeader />}
-      {debt.loading ? <Loading /> : <div>{routes}</div>}
-      {debt.isAuth && <BottomNav />}
+      <div className="app">
+        <div>{debt.isAuth && <PageHeader />}</div>
+        <div className="main">
+          {debt.loading ? <Loading /> : <div>{routes}</div>}
+        </div>
+        <div>{debt.isAuth && <BottomNav />}</div>
+      </div>
     </BrowserRouter>
   );
 });
