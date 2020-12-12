@@ -7,7 +7,6 @@ import "../styles/PageHeader.sass";
 import debt from "../store/Debt";
 import { NavLink } from "react-router-dom";
 import { Header } from "./Header";
-import { Button } from "./Button";
 
 export const PageHeader = observer(() => {
   const stl = [""];
