@@ -47,7 +47,7 @@ export const BottomNav = observer(() => {
           setIsOpen(false);
         }}
       >
-        <AddCard mb="32px" />
+        <AddCard mb="10px" bw="0px" />
       </Modal>
     </div>
   );

@@ -14,7 +14,7 @@ import { Button } from "../components/Button";
 import { Header } from "../components/Header";
 import { EmptyCard } from "../components/EmptyCard";
 
-export const AddCard = observer(({ mt = "0px", mb = "0px" }) => {
+export const AddCard = observer(({ mt = "0px", mb = "0px", bw = "1px" }) => {
   const style = {
     marginTop: mt,
     marginBottom: mb,
@@ -44,7 +44,7 @@ export const AddCard = observer(({ mt = "0px", mb = "0px" }) => {
   };
   return (
     <div style={style} className="add-card">
-      <EmptyCard>
+      <EmptyCard bw={bw}>
         <Header mb="16px">Add</Header>
         <div className="add-card-inner">
           <div className="add-card-inner__inputs">

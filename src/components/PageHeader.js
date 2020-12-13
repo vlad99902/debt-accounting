@@ -40,7 +40,7 @@ export const PageHeader = observer(() => {
             <div className="page-header__nav-el page-header__user">
               <NavLink
                 to="/settings"
-                activeClassName="active"
+                activeClassName="active__page-header"
                 className="page-header__user-inner"
               >
                 <div className="page-header__user-name">{userName}</div>
