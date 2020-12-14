@@ -1,17 +1,17 @@
-import { makeAutoObservable } from 'mobx';
-import request from '../functions/request';
+import { makeAutoObservable } from "mobx";
+import request from "../functions/request";
 
-import { ObjectID } from 'mongodb';
+import { ObjectID } from "mongodb";
 
 class Debt {
-  serverUrl = '';
+  serverUrl = "";
   store = [];
   isAuth = false;
-  email = '';
-  token = '';
-  userId = '';
+  email = "";
+  token = "";
+  userId = "";
   loading = false;
-  storageName = 'userData';
+  storageName = "userData";
 
   constructor() {
     makeAutoObservable(this);
@@ -30,7 +30,7 @@ class Debt {
         yield this.getAllDebts();
       }
     } catch (error) {
-      console.log('token was not found');
+      console.log("token was not found");
     } finally {
       this.setLoading(false);
     }
@@ -47,12 +47,12 @@ class Debt {
     try {
       const data = yield request(
         `${this.serverUrl}/api/auth/login`,
-        'POST',
-        '',
+        "POST",
+        "",
         {
           email,
           password,
-        },
+        }
       );
       this.setEmail(email);
       this.setUserId(data.userId);
@@ -63,7 +63,7 @@ class Debt {
           email: this.email,
           userId: this.userId,
           token: this.token,
-        }),
+        })
       );
       this.setIsAuth(true);
 
@@ -86,12 +86,12 @@ class Debt {
     try {
       const data = yield request(
         `${this.serverUrl}/api/auth/register`,
-        'POST',
-        '',
+        "POST",
+        "",
         {
           email,
           password,
-        },
+        }
       );
       this.setEmail(email);
       this.setUserId(data.userId);
@@ -102,7 +102,7 @@ class Debt {
           email: this.email,
           userId: this.userId,
           token: this.token,
-        }),
+        })
       );
       this.setIsAuth(true);
       //TODO Fetch needed info
@@ -123,8 +123,8 @@ class Debt {
     try {
       const debts = yield request(
         `${this.serverUrl}/api/debt`,
-        'GET',
-        this.token,
+        "GET",
+        this.token
       );
       this.setStore(debts);
     } catch (error) {
@@ -143,7 +143,7 @@ class Debt {
       const debtId = new ObjectID().toString();
 
       const dataToSend = { _id: new ObjectID(debtId), ...item };
-      yield request(`${this.serverUrl}/api/debt/add`, 'POST', this.token, {
+      yield request(`${this.serverUrl}/api/debt/add`, "POST", this.token, {
         dataToSend,
       });
 
@@ -163,7 +163,7 @@ class Debt {
 
   *deleteItem(id) {
     try {
-      yield request(`${this.serverUrl}/api/debt/:${id}`, 'DELETE', this.token, {
+      yield request(`${this.serverUrl}/api/debt/:${id}`, "DELETE", this.token, {
         _id: id,
       });
       let store = this.store;
@@ -180,11 +180,11 @@ class Debt {
     try {
       yield request(
         `${this.serverUrl}/api/debt/:${item._id}`,
-        'PUT',
+        "PUT",
         this.token,
         {
           item,
-        },
+        }
       );
 
       let store = this.store;
@@ -202,9 +202,9 @@ class Debt {
 
   logout() {
     this.setIsAuth(false);
-    this.setToken('');
-    this.setEmail('');
-    this.setUserId('');
+    this.setToken("");
+    this.setEmail("");
+    this.setUserId("");
     localStorage.removeItem(this.storageName);
   }
 
@@ -232,19 +232,19 @@ class Debt {
   get oweTotal() {
     return this.store.reduce((sum, elem) => {
       if (elem.owe && !elem.completed) sum += elem.sum;
-      return sum;
+      return Math.round(+sum);
     }, 0);
   }
 
   get shouldTotal() {
     return this.store.reduce((sum, elem) => {
       if (!elem.owe && !elem.completed) sum += elem.sum;
-      return +sum;
+      return Math.round(+sum);
     }, 0);
   }
 
   get allTotal() {
-    return this.shouldTotal - this.oweTotal;
+    return Math.round(this.shouldTotal - this.oweTotal);
   }
 
   /**

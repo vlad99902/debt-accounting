@@ -17,7 +17,7 @@ export const BottomNav = observer(() => {
       <nav className="bottom-nav">
         <NavLink to="/home" activeClassName="active__bottom-nav">
           <div className="bottom-nav__inner">
-            <div class="bottom-nav__home bottom-nav__icon">
+            <div className="bottom-nav__home bottom-nav__icon">
               <img src={homeIMG} alt="" />
             </div>
           </div>
@@ -28,14 +28,14 @@ export const BottomNav = observer(() => {
           onClick={() => setIsOpen(true)}
         >
           <div className="bottom-nav__inner">
-            <div class="bottom-nav__add bottom-nav__icon">
+            <div className="bottom-nav__add bottom-nav__icon">
               <img src={plusIMG} alt="" />
             </div>
           </div>
         </NavLink>
         <NavLink to="/settings" activeClassName="active__bottom-nav">
           <div className="bottom-nav__inner">
-            <div class="bottom-nav__settings bottom-nav__icon">
+            <div className="bottom-nav__settings bottom-nav__icon">
               <img src={settingsIMG} alt="" />
             </div>
           </div>
