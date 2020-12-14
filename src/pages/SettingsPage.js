@@ -1,13 +1,18 @@
-import React from 'react';
-import { observer } from 'mobx-react-lite';
+import React from "react";
+import { observer } from "mobx-react-lite";
 
-import '../styles/SettingsPage.sass';
+import debt from "../store/Debt";
+
+import "../styles/SettingsPage.sass";
 
 export const SettingsPage = observer(() => {
   return (
     <>
       <div className="container">
-        <h1>Настройки</h1>
+        <h1>Settings</h1>
+        <a href="/home" onClick={() => debt.logout()}>
+          <div style={{ textDecoration: "underline" }}>log out</div>
+        </a>
       </div>
     </>
   );
