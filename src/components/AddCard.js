@@ -1,38 +1,37 @@
-import React, { useState } from 'react';
-import NumberFormat from 'react-number-format';
+import React, { useState } from "react";
+import NumberFormat from "react-number-format";
 
-import { observer } from 'mobx-react-lite';
-import debt from '../store/Debt';
-import notify from '../functions/notify';
+import { observer } from "mobx-react-lite";
+import debt from "../store/Debt";
+import notify from "../functions/notify";
 
 //styles
-import '../styles/Input.sass';
-import '../styles/AddCard.sass';
+import "../styles/Input.sass";
+import "../styles/AddCard.sass";
 
 //components
-import { Button } from '../components/Button';
-import { Header } from '../components/Header';
-import { EmptyCard } from '../components/EmptyCard';
+import { Button } from "../components/Button";
+import { Header } from "../components/Header";
+import { EmptyCard } from "../components/EmptyCard";
 
-
-export const AddCard = observer(({ mt = '0px', mb = '0px', display = 'block' }) => {
+export const AddCard = observer(({ mt = "0px", mb = "0px", bw = "1px" }) => {
   const style = {
     marginTop: mt,
-		marginBottom: mb
+    marginBottom: mb,
   };
 
-  const [title, setTitle] = useState('');
+  const [title, setTitle] = useState("");
   const [sum, setSum] = useState();
 
   const clearInput = (stateFunc) => {
-    stateFunc('');
+    stateFunc("");
   };
 
   const onClickAdd = async (owe = true) => {
     //TODO изменить добавление (добавлять тип в локальный стор правильно)
     try {
       await debt.add({
-        title: title.trim() || 'Title',
+        title: title.trim() || "Title",
         sum: +sum || 0,
         completed: false,
         owe,
@@ -40,12 +39,12 @@ export const AddCard = observer(({ mt = '0px', mb = '0px', display = 'block' }) 
       clearInput(setTitle);
       clearInput(setSum);
     } catch (e) {
-      notify(e.message)
+      notify(e.message);
     }
   };
   return (
     <div style={style} className="add-card">
-      <EmptyCard>
+      <EmptyCard bw={bw}>
         <Header mb="16px">Add</Header>
         <div className="add-card-inner">
           <div className="add-card-inner__inputs">
@@ -60,7 +59,7 @@ export const AddCard = observer(({ mt = '0px', mb = '0px', display = 'block' }) 
             />
             <NumberFormat
               thousandSeparator={true}
-              prefix={'$'}
+              prefix={"$"}
               className="add-card-inner__input input"
               id="sum"
               name="sum"

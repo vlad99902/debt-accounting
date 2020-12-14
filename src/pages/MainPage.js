@@ -1,24 +1,26 @@
-import React from 'react';
+import React from "react";
 
-import { observer } from 'mobx-react-lite';
-import debt from '../store/Debt';
-import { ToastContainer } from 'react-toastify';
+import { observer } from "mobx-react-lite";
+import debt from "../store/Debt";
+import { ToastContainer } from "react-toastify";
 
 //styles
-import '../styles/Input.sass';
-import '../styles/MainPage.sass';
+import "../styles/Input.sass";
+import "../styles/MainPage.sass";
 
 //components
-import { Total } from '../components/Total';
-import { Card } from '../components/Card';
-import { Header } from '../components/Header';
-import { AddCard } from '../components/AddCard';
+import { Total } from "../components/Total";
+import { Card } from "../components/Card";
+import { Header } from "../components/Header";
+import { AddCard } from "../components/AddCard";
 
 export const MainPage = observer(() => {
   return (
     <>
       <div className="container container--padding-vertical">
-        <AddCard mb="32px"/>
+        <div className="add-card-hidden">
+          <AddCard mb="32px" />
+        </div>
         <div className="lists">
           <div className="lists__inner">
             <div className="lists__header">
