@@ -8,8 +8,8 @@ import { BrowserRouter } from "react-router-dom";
 import { useRoutes } from "./routes";
 import { useEffect } from "react";
 
-import { PageHeader } from "./components/PageHeader";
-import { Loading } from "./components/Loading";
+import { PageHeader } from "./components/PageHeader/PageHeader";
+import { Loading } from "./components/Loading/Loading";
 import { BottomNav } from "./components/BottomNav/BottomNav";
 
 export default observer(function App() {

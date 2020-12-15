@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 
 import { NavLink } from "react-router-dom";
-import { Modal } from "../Modal";
+import { Modal } from "../Modal/Modal";
 import { observer } from "mobx-react-lite";
 
 import "./BottomNav.sass";
 import homeIMG from "../../assets/home.png";
 import plusIMG from "../../assets/plus.png";
 import settingsIMG from "../../assets/settings.png";
-import { AddCard } from "../AddCard";
+import { AddCard } from "../AddCard/AddCard";
 
 export const BottomNav = observer(() => {
   const [isOpen, setIsOpen] = useState(false);

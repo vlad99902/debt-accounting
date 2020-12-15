@@ -1,6 +1,6 @@
 import React from "react";
 
-import "../styles/Card.sass";
+import "../Card/Card.sass";
 
 export const EmptyCard = ({ children, position = "center", bw = "1px" }) => {
   let style = {

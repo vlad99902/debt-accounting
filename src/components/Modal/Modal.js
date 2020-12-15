@@ -1,9 +1,9 @@
 import React from "react";
 import ReactDom from "react-dom";
 
-import { Button } from "./Button";
+import { Button } from "../Button/Button";
 
-import "../styles/Modal.sass";
+import "./Modal.sass";
 
 export const Modal = ({ children, isOpen, onClose, overlay = "hide" }) => {
   if (!isOpen) return null;

@@ -1,0 +1,32 @@
+@import "../../index.sass"
+
+.input
+	width: 100%
+	font-size: 16px
+	border-radius: 25px
+	border: 1px solid $slivki
+	background-color: $karamel
+	color: $korica
+	font-weight: 600
+	outline: none
+	padding: 8px 16px
+	transition-duration: 0.5s
+	&::placeholder
+		color: rgba(102, 47, 28, 0.55)
+		font-size: 16px
+	&:focus
+		&::placeholder
+			transition: 0.5s
+			color: transparent
+	&:hover
+		transform: scale(1.05)
+		cursor: pointer
+	&:focus
+		transform: scale(1.05)
+
+@media ( max-width: 767px)
+	.input
+		&:hover
+			transform: none
+		&:focus
+			transform: none

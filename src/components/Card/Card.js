@@ -1,9 +1,9 @@
-import React from 'react';
-import { observer } from 'mobx-react-lite';
+import React from "react";
+import { observer } from "mobx-react-lite";
 
-import '../styles/Card.sass';
+import "./Card.sass";
 
-import { Item } from '../components/Item';
+import { Item } from "../Item/Item";
 
 export const Card = observer(({ items = [] }) => {
   const checkIfEmpty = () => {

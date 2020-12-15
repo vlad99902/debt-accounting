@@ -2,11 +2,11 @@ import React from "react";
 import { observer } from "mobx-react-lite";
 import NumberFormat from "react-number-format";
 
-import "../styles/PageHeader.sass";
+import "./PageHeader.sass";
 
-import debt from "../store/Debt";
+import debt from "../../store/Debt";
 import { NavLink } from "react-router-dom";
-import { Header } from "./Header";
+import { Header } from "../Header/Header";
 
 export const PageHeader = observer(() => {
   const stl = [""];
