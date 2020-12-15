@@ -1,19 +1,19 @@
-import React, { useState } from 'react';
-import { observer } from 'mobx-react-lite';
-import debt from '../store/Debt';
-import { ToastContainer } from 'react-toastify';
+import React, { useState } from "react";
+import { observer } from "mobx-react-lite";
+import debt from "../store/Debt";
+import { ToastContainer } from "react-toastify";
 
-import 'react-toastify/dist/ReactToastify.css';
-import '../styles/Input.sass';
-import '../styles/AuthPage.sass';
+import "react-toastify/dist/ReactToastify.css";
+import "../components/Input/Input.sass";
+import "./AuthPage.sass";
 
-import { Header } from '../components/Header';
-import { EmptyCard } from '../components/EmptyCard';
-import { Button } from '../components/Button';
-import notify from '../functions/notify';
+import { Header } from "../components/Header/Header";
+import { EmptyCard } from "../components/EmptyCard/EmptyCard";
+import { Button } from "../components/Button/Button";
+import notify from "../functions/notify";
 
 export const AuthPage = observer(() => {
-  const [form, setForm] = useState({ email: '', password: '' });
+  const [form, setForm] = useState({ email: "", password: "" });
 
   const changeHandler = (event) => {
     setForm({ ...form, [event.target.name]: event.target.value });

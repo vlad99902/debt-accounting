@@ -5,14 +5,13 @@ import debt from "../store/Debt";
 import { ToastContainer } from "react-toastify";
 
 //styles
-import "../styles/Input.sass";
-import "../styles/MainPage.sass";
+import "./MainPage.sass";
 
 //components
-import { Total } from "../components/Total";
-import { Card } from "../components/Card";
-import { Header } from "../components/Header";
-import { AddCard } from "../components/AddCard";
+import { Total } from "../components/Total/Total";
+import { Card } from "../components/Card/Card";
+import { Header } from "../components/Header/Header";
+import { AddCard } from "../components/AddCard/AddCard";
 
 export const MainPage = observer(() => {
   return (

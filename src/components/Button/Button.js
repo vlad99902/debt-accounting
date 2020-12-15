@@ -1,7 +1,7 @@
 import React from "react";
 
 // Styles
-import "../styles/Button.sass";
+import "./Button.sass";
 
 //components
 

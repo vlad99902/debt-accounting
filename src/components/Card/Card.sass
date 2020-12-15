@@ -1,0 +1,22 @@
+
+@import '../../index.sass'
+
+.card
+	border: 1px solid $perec
+	border-radius: 16px
+	padding: 16px
+	max-height: 358px
+	overflow: auto
+	@media ( max-width: 425px )
+		padding: 10px
+
+	&--with-width
+		max-width: 500px
+
+	&__item
+		margin-bottom: 12px
+		&:last-child
+			margin: 0
+
+	&::-webkit-scrollbar
+		width: 0

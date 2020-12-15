@@ -2,17 +2,17 @@ import React, { useState } from "react";
 import NumberFormat from "react-number-format";
 
 import { observer } from "mobx-react-lite";
-import debt from "../store/Debt";
-import notify from "../functions/notify";
+import debt from "../../store/Debt";
+import notify from "../../functions/notify";
 
 //styles
-import "../styles/Input.sass";
-import "../styles/AddCard.sass";
+import "../Item/Item.sass";
+import "./AddCard.sass";
 
 //components
-import { Button } from "../components/Button";
-import { Header } from "../components/Header";
-import { EmptyCard } from "../components/EmptyCard";
+import { Button } from "../Button/Button";
+import { Header } from "../Header/Header";
+import { EmptyCard } from "../EmptyCard/EmptyCard";
 
 export const AddCard = observer(({ mt = "0px", mb = "0px", bw = "1px" }) => {
   const style = {

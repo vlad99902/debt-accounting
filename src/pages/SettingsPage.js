@@ -3,7 +3,7 @@ import { observer } from "mobx-react-lite";
 
 import debt from "../store/Debt";
 
-import "../styles/SettingsPage.sass";
+import "./SettingsPage.sass";
 
 export const SettingsPage = observer(() => {
   return (

@@ -1,12 +1,12 @@
-import React from 'react';
+import React from "react";
 
-import '../styles/Header.sass';
+import "./Header.sass";
 
 export const Header = ({
-  fw = '500',
-  fz = '26px',
-  ta = 'center',
-  mb = '0px',
+  fw = "500",
+  fz = "26px",
+  ta = "center",
+  mb = "0px",
   children,
 }) => {
   const style = {
