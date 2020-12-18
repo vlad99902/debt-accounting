@@ -5,6 +5,7 @@ import NumberFormat from "react-number-format";
 import "./PageHeader.sass";
 
 import debt from "../../store/Debt";
+import settings from "../../store/Settings";
 import { NavLink } from "react-router-dom";
 import { Header } from "../Header/Header";
 
@@ -32,7 +33,7 @@ export const PageHeader = observer(() => {
                     value={debt.allTotal}
                     displayType={"text"}
                     thousandSeparator={true}
-                    prefix={"$"}
+                    prefix={settings.sign}
                   />
                 </span>
               </NavLink>

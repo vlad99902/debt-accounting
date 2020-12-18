@@ -3,6 +3,7 @@ import NumberFormat from "react-number-format";
 
 import { observer } from "mobx-react-lite";
 import debt from "../../store/Debt";
+import settings from "../../store/Settings";
 import notify from "../../functions/notify";
 
 //styles
@@ -59,13 +60,13 @@ export const AddCard = observer(({ mt = "0px", mb = "0px", bw = "1px" }) => {
             />
             <NumberFormat
               thousandSeparator={true}
-              prefix={"$"}
+              prefix={settings.sign}
               className="add-card-inner__input input"
               id="sum"
               name="sum"
               inputMode="numeric"
               value={sum}
-              placeholder="$0"
+              placeholder={settings.sign + "0"}
               allowNegative={false}
               decimalScale={2}
               onValueChange={(values) => {

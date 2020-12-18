@@ -6,6 +6,7 @@ import NumberFormat from "react-number-format";
 import "./Total.sass";
 
 // components
+import settings from "../../store/Settings";
 
 export const Total = observer(
   ({
@@ -33,7 +34,7 @@ export const Total = observer(
               value={total}
               displayType={"text"}
               thousandSeparator={true}
-              prefix={"$"}
+              prefix={settings.sign}
             />
           </span>
         </h1>

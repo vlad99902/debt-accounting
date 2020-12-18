@@ -7,6 +7,8 @@ import NumberFormat from "react-number-format";
 import "./Item.sass";
 
 import debt from "../../store/Debt";
+import settings from "../../store/Settings";
+
 export const Item = observer((props) => {
   const [input, setInput] = useState({ title: false, sum: false });
   const [completed, setCompleted] = useState(props.completed);
@@ -133,13 +135,13 @@ export const Item = observer((props) => {
             <div name="sum">
               <NumberFormat
                 thousandSeparator={true}
-                prefix={"$"}
+                prefix={settings.sign}
                 className="item__changed-input small"
                 id="sum"
                 name="sum"
                 inputMode="numeric"
                 value={form.sum}
-                placeholder="$0"
+                placeholder={settings.sign + "0"}
                 allowNegative={false}
                 decimalScale={2}
                 autoFocus
@@ -157,7 +159,7 @@ export const Item = observer((props) => {
               value={form.sum}
               displayType={"text"}
               thousandSeparator={true}
-              prefix={"$"}
+              prefix={settings.sign}
             />
           </h3>
         )}
