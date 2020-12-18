@@ -7,6 +7,7 @@ export const Header = ({
   fz = "26px",
   ta = "center",
   mb = "0px",
+  mt = "0px",
   children,
 }) => {
   const style = {
@@ -14,6 +15,7 @@ export const Header = ({
     fontSize: fz,
     textAlign: ta,
     marginBottom: mb,
+    marginTop: mt,
   };
   return (
     <h1 className="header" style={style}>
