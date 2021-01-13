@@ -1,5 +1,6 @@
 import React from "react";
 
+import { useTranslation } from "react-i18next";
 import { observer } from "mobx-react-lite";
 import debt from "../store/Debt";
 import { ToastContainer } from "react-toastify";
@@ -14,6 +15,7 @@ import { Header } from "../components/Header/Header";
 import { AddCard } from "../components/AddCard/AddCard";
 
 export const MainPage = observer(() => {
+  const { t, i18n } = useTranslation();
   return (
     <>
       <div className="container container--padding-vertical">
@@ -23,7 +25,7 @@ export const MainPage = observer(() => {
         <div className="lists">
           <div className="lists__inner">
             <div className="lists__header">
-              <Header ta="left">Debts</Header>
+              <Header ta="left">{t("debts")}</Header>
               <Total total={debt.oweTotal} />
             </div>
             <div className="lists__card">
@@ -33,7 +35,7 @@ export const MainPage = observer(() => {
 
           <div className="lists__inner">
             <div className="lists__header">
-              <Header ta="left">Debtors</Header>
+              <Header ta="left">{t("debtors")}</Header>
               <Total total={debt.shouldTotal} />
             </div>
             <div className="lists__card">

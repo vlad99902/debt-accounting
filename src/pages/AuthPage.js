@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { observer } from "mobx-react-lite";
 import debt from "../store/Debt";
 import { ToastContainer } from "react-toastify";
@@ -13,6 +14,8 @@ import { Button } from "../components/Button/Button";
 import notify from "../functions/notify";
 
 export const AuthPage = observer(() => {
+  const { t, i18n } = useTranslation();
+
   const [form, setForm] = useState({ email: "", password: "" });
 
   const changeHandler = (event) => {
@@ -41,10 +44,12 @@ export const AuthPage = observer(() => {
       <div className="auth-page__inner">
         <div className="container">
           <Header fw="500" fz="44px" mb="32px">
-            Let's start our journey!
+            {t("greeting")}
           </Header>
           <EmptyCard position="center">
-            <Header mb="16px">Register or LogIn</Header>
+            <Header mb="16px">
+              {t("register")} {t("or")} {t("log_in")}
+            </Header>
             <input
               type="email"
               id="email"
