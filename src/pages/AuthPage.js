@@ -48,7 +48,7 @@ export const AuthPage = observer(() => {
           </Header>
           <EmptyCard position="center">
             <Header mb="16px">
-              {t("register")} {t("or")} {t("log_in")}
+              {t("register")} {t("or")} {t("logIn")}
             </Header>
             <input
               type="email"
@@ -68,10 +68,10 @@ export const AuthPage = observer(() => {
             />
             <div className="auth-page__buttons">
               <Button onClick={loginHandler} disabled={debt.loading}>
-                Log In
+                {t("logIn")}
               </Button>
               <Button onClick={registerHandler} disabled={debt.loading}>
-                Register
+                {t("register")}
               </Button>
             </div>
           </EmptyCard>

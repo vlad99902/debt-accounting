@@ -15,8 +15,9 @@ export const Total = observer(
     fz = "26px",
     ta = "center",
     mb = "0px",
-    children = "Total: ",
+    children = "Total",
   }) => {
+    children += ": ";
     return (
       <>
         <h1
@@ -34,7 +35,7 @@ export const Total = observer(
               value={total}
               displayType={"text"}
               thousandSeparator={true}
-              prefix={settings.sign}
+              prefix={settings.languageSign}
             />
           </span>
         </h1>

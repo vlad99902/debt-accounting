@@ -16,7 +16,9 @@ class Debt {
   constructor() {
     makeAutoObservable(this);
   }
-
+  /**
+   * User initialisation
+   */
   *init() {
     this.setLoading(true);
     try {

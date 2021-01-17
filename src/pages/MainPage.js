@@ -26,7 +26,7 @@ export const MainPage = observer(() => {
           <div className="lists__inner">
             <div className="lists__header">
               <Header ta="left">{t("debts")}</Header>
-              <Total total={debt.oweTotal} />
+              <Total total={debt.oweTotal}>{t("total")}</Total>
             </div>
             <div className="lists__card">
               <Card items={debt.oweList} />
@@ -36,7 +36,7 @@ export const MainPage = observer(() => {
           <div className="lists__inner">
             <div className="lists__header">
               <Header ta="left">{t("debtors")}</Header>
-              <Total total={debt.shouldTotal} />
+              <Total total={debt.shouldTotal}>{t("total")}</Total>
             </div>
             <div className="lists__card">
               <Card items={debt.shouldList} />

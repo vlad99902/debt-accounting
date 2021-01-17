@@ -8,8 +8,10 @@ import debt from "../../store/Debt";
 import settings from "../../store/Settings";
 import { NavLink } from "react-router-dom";
 import { Header } from "../Header/Header";
+import { useTranslation } from "react-i18next";
 
 export const PageHeader = observer(() => {
+  const { t, i18n } = useTranslation();
   const stl = [""];
   debt.allTotal < 0 ? stl.push("exc-red") : stl.push("exc-green");
 
@@ -27,13 +29,13 @@ export const PageHeader = observer(() => {
           <div className="page-header__navigation">
             <div className="page-header__nav-el page-header__balance">
               <NavLink to="/home" activeClassName="active__page-header">
-                Balance:{" "}
+                {t("balance")}:{" "}
                 <span className={stl.join("")}>
                   <NumberFormat
                     value={debt.allTotal}
                     displayType={"text"}
                     thousandSeparator={true}
-                    prefix={settings.sign}
+                    prefix={settings.languageSign}
                   />
                 </span>
               </NavLink>
@@ -63,7 +65,7 @@ export const PageHeader = observer(() => {
                 onClick={() => debt.logout()}
                 className="page-header__logout-inner"
               >
-                <div className="page-header__logout-text">log out</div>
+                <div className="page-header__logout-text">{t("logOut")}</div>
                 <svg className="page-header__logout-icon">
                   <g>
                     <path
