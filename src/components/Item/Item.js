@@ -135,13 +135,13 @@ export const Item = observer((props) => {
             <div name="sum">
               <NumberFormat
                 thousandSeparator={true}
-                prefix={settings.sign}
+                prefix={settings.languageSign}
                 className="item__changed-input small"
                 id="sum"
                 name="sum"
                 inputMode="numeric"
                 value={form.sum}
-                placeholder={settings.sign + "0"}
+                placeholder={settings.languageSign + "0"}
                 allowNegative={false}
                 decimalScale={2}
                 autoFocus
@@ -159,7 +159,7 @@ export const Item = observer((props) => {
               value={form.sum}
               displayType={"text"}
               thousandSeparator={true}
-              prefix={settings.sign}
+              prefix={settings.languageSign}
             />
           </h3>
         )}

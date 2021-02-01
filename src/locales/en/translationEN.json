@@ -1,0 +1,18 @@
+{
+	"greeting": "Let's start right now!",
+	"logIn": "LogIn",
+	"or": "or",
+	"register": "Register",	
+	"debts": "Debts",
+	"debtors": "Debtors",
+	"settings": "Settings",
+	"language": "Language",
+	"balance": "Balance",
+	"logOut": "log out",
+	"addTitle": "Fill in the fields to add",
+	"addDebt": "Add debt",
+	"addDebtor": "Add debtor",
+	"empty": "Empty yet",
+	"total": "Total",
+	"title": "Title"
+}

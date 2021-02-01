@@ -2,6 +2,7 @@ import "./App.sass";
 
 import { observer } from "mobx-react-lite";
 import debt from "./store/Debt";
+import settings from "./store/Settings";
 
 //для использования роутов
 import { BrowserRouter } from "react-router-dom";
@@ -15,6 +16,7 @@ import { BottomNav } from "./components/BottomNav/BottomNav";
 export default observer(function App() {
   useEffect(() => {
     debt.init();
+    settings.init();
   }, []);
   const routes = useRoutes(debt.isAuth);
 
